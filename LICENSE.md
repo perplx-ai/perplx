@@ -1,6 +1,6 @@
-MIT License
+# MIT License
 
-Copyright (c) 2026 Rahul Suthar, Jordan Walker, Mateo Alado, Sajjaad Farzad
+## Copyright (c) 2026 Rahul Suthar, Jordan Walker, Mateo Alado, Sajjaad Farzad
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
