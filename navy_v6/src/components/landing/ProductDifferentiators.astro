@@ -1,0 +1,62 @@
+---
+import Kicker from "@/components/assets/Kicker.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const rows = [
+  {
+    label: "vs. general coding agents (e.g. Claude Code–style loops)",
+    text: "Those tools excel at reasoning over your repo—but they still default to model priors when the world moves. Perplx adds a research step so “I think the API works like…” becomes “here’s what the docs say today.”",
+  },
+  {
+    label: "vs. Codex / inline completion",
+    text: "Completions are reactive and local; they don’t systematically fetch authoritative web context for multi-step tasks. Perplx is aimed at end-to-end tasks where correctness depends on what shipped this week.",
+  },
+  {
+    label: "What stays the same",
+    text: "You still work in familiar editors and flows. The difference is what the agent reads before it edits—and how clearly it tells you why.",
+  },
+] as const;
+---
+
+<section class="bg-base-50">
+  <Wrapper variant="standard" class="relative py-20 md:py-24">
+    <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-8">
+      <Kicker>Differentiators</Kicker>
+      <div class="lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-balance text-base-900 lg:-mt-1"
+        >
+          What sets us apart
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-5 max-w-3xl text-base-600">
+          The category is crowded with strong models. Our wedge is{" "}
+          <strong class="font-semibold text-base-800"
+            >freshness + transparency</strong
+          >: treat the live web as part of the context window, and make the plan
+          legible before execution.
+        </Text>
+        <dl class="mt-12 space-y-8">
+          {
+            rows.map((r) => (
+              <div class="border-b border-base-200 pb-8 last:border-0 last:pb-0">
+                <dt>
+                  <Text tag="span" variant="textBase" class="font-display font-semibold text-base-900">
+                    {r.label}
+                  </Text>
+                </dt>
+                <dd class="mt-3">
+                  <Text tag="p" variant="textBase" class="leading-relaxed text-base-600">
+                    {r.text}
+                  </Text>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </Wrapper>
+</section>

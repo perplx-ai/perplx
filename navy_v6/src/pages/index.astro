@@ -1,20 +1,27 @@
 ---
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-// Sections
+// Hero
 import OctopusCodeHero from "@/components/heros/OctopusCodeHero.astro";
+// Landing narrative
+import ProductIntro from "@/components/landing/ProductIntro.astro";
+import ProblemSection from "@/components/landing/ProblemSection.astro";
 import Feature1 from "@/components/features/Feature1.astro";
-import Feature2 from "@/components/features/Feature2.astro";
-import Feature4 from "@/components/features/Feature4.astro";
-import Feature3 from "@/components/features/Feature3.astro";
+import HowItWorks from "@/components/landing/HowItWorks.astro";
+import ProductDifferentiators from "@/components/landing/ProductDifferentiators.astro";
+import UseCasesSection from "@/components/landing/UseCasesSection.astro";
+import LandingTeam from "@/components/landing/LandingTeam.astro";
 import Cta1 from "@/components/ctas/Cta1.astro";
 ---
 
 <BaseLayout>
   <OctopusCodeHero />
+  <ProductIntro />
+  <ProblemSection />
   <Feature1 />
-  <Feature2 />
-  <Feature3 />
-  <Feature4 />
+  <HowItWorks />
+  <ProductDifferentiators />
+  <UseCasesSection />
+  <LandingTeam />
   <Cta1 />
 </BaseLayout>

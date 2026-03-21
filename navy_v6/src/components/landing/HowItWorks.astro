@@ -1,0 +1,65 @@
+---
+import Kicker from "@/components/assets/Kicker.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const steps = [
+  {
+    title: "You describe the task",
+    body: "In plain language—in your editor, next to the code that matters.",
+  },
+  {
+    title: "The agent researches in real time",
+    body: "Perplexity-backed web search pulls current docs, release notes, and trustworthy sources—not a frozen snapshot from training.",
+  },
+  {
+    title: "You get grounded suggestions",
+    body: "Proposed edits and commands come with short, readable context: what changes, why it’s valid now, and what to verify before you run it.",
+  },
+] as const;
+---
+
+<section class="border-b border-base-200 bg-white">
+  <Wrapper variant="standard" class="relative py-20 md:py-24">
+    <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-8">
+      <Kicker>How it works</Kicker>
+      <div class="lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-balance text-base-900 lg:-mt-1"
+        >
+          A coding agent with the web on speed dial
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-5 max-w-3xl text-base-600">
+          Perplx is built around a simple loop:{" "}
+          <strong class="font-semibold text-base-800"
+            >intent → live research → explain → act</strong
+          >. Judges and teams shouldn’t have to choose between “fast” and
+          “correct”—the product makes freshness a first-class input, not an
+          accident.
+        </Text>
+        <ol class="mt-12 space-y-8 border-l-2 border-[#3b7a87]/40 pl-8">
+          {
+            steps.map((s, i) => (
+              <li class="relative">
+                <span
+                  class="absolute -left-[calc(2rem+5px)] top-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#3b7a87] font-mono text-xs font-bold text-white"
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </span>
+                <Text tag="h3" variant="textLG" class="font-display font-semibold text-base-900">
+                  {s.title}
+                </Text>
+                <Text tag="p" variant="textBase" class="mt-2 text-base-600">
+                  {s.body}
+                </Text>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </Wrapper>
+</section>

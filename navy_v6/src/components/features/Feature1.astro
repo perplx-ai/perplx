@@ -8,46 +8,35 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const features = [
   {
-    title: "Does the research for you",
+    title: "Live research, not stale priors",
     subtitle:
-      "Skips the tab pile: it pulls current official documentation, package READMEs, and security notes instead of leaning on a frozen training snapshot—so answers match what vendors ship today.",
+      "Pulls current official documentation, release notes, and trustworthy web context via Perplexity-backed search—so the agent aligns with what vendors ship now, not a frozen training snapshot.",
   },
   {
-    title: "Summaries you can actually read",
+    title: "Readable summaries before you run anything",
     subtitle:
-      "Every suggested edit, dependency, or command comes with a short plain-language summary: what will change, why it matters, and what to watch for—so you stay in control and trust the next step.",
+      "Every non-trivial suggestion comes with a short explanation: what will change, why it’s grounded in up-to-date sources, and what to double-check—so you stay in control.",
   },
   {
-    title: "Skills & custom commands",
+    title: "Skills & repeatable workflows",
     subtitle:
-      "Define reusable skills—personalized instructions, scripts, and workflows—so the agent repeats your team’s patterns instead of improvising every session.",
-  },
-  {
-    title: "Easier, more seamless coding",
-    subtitle:
-      "From first prompt to merged change, the flow stays in your editor and repo conventions—fewer context switches, less glue work, and suggestions that fit the way you already build.",
-  },
-  {
-    title: "Right model & shareable chats",
-    subtitle:
-      "Switch between a lighter planning model and a flagship-class model by task, and share conversations when you need reviews, handoffs, or onboarding—without dumping raw logs into chat apps.",
+      "Encode how your team likes to work—scripts, conventions, and guardrails—so the agent repeats your patterns instead of improvising every session.",
   },
 ] as const;
 ---
 
-<section class="relative overflow-hidden">
-  <Wrapper variant="standard" class="relative py-24">
-    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
-      <Kicker>Features</Kicker>
+<section class="relative overflow-hidden bg-white">
+  <Wrapper variant="standard" class="relative py-20 md:py-24">
+    <div class="grid grid-cols-1 items-start gap-y-8 lg:grid-cols-8">
+      <Kicker>Our solution</Kicker>
       <div class="relative text-balance lg:col-span-7">
         <Text
           tag="h2"
           variant="displaySM"
           class="font-display text-base-900 leading-snug lg:-mt-1"
         >
-          Does the research for you—live docs and package context, not guesswork
-          from stale training data—then explains every suggestion before you hit
-          run.
+          Three things that make Perplx different: fresh context, transparent
+          plans, and workflows you own.
         </Text>
         <Button
           size="xs"
@@ -59,54 +48,20 @@ const features = [
           View plans
         </Button>
 
-        <div class="mt-8 grid grid-cols-1 gap-px border border-base-200 bg-base-200 md:mt-9 md:grid-cols-2">
+        <div class="mt-8 grid grid-cols-1 gap-px border border-base-200 bg-base-200 md:mt-9 md:grid-cols-3">
           {
             features.map((item) => (
               <div class="flex flex-col gap-2 bg-white p-5 sm:p-6">
                 <Text tag="h3" variant="textBase" class="text-base-900">
                   {item.title}
                 </Text>
-                <Text tag="p" variant="textBase" class="text-base-500 leading-relaxed">
+                <Text tag="p" variant="textBase" class="leading-relaxed text-base-500">
                   {item.subtitle}
                 </Text>
               </div>
             ))
           }
         </div>
-
-        <aside
-          class="mt-8 border border-base-200 bg-base-50 p-6 md:mt-9 md:p-7"
-          aria-labelledby="compare-agents-heading"
-        >
-          <Text
-            tag="h3"
-            variant="textLG"
-            id="compare-agents-heading"
-            class="font-display font-semibold text-base-900"
-          >
-            How this differs from typical coding agents
-          </Text>
-          <Text tag="p" variant="textBase" class="mt-4 text-base-600">
-            Many coding agents lean heavily on what the model already “knows”
-            from training—fast, but vulnerable to stale APIs and silent
-            assumptions. Perplx{" "}
-            <strong class="font-semibold text-base-800"
-              >does the research for you</strong
-            >
-            : it treats{" "}
-            <strong class="font-semibold text-base-800"
-              >up-to-date documentation</strong
-            >{" "}
-            as the source of truth, layers in your repo’s conventions, and pairs
-            every non-trivial suggestion with a{" "}
-            <strong class="font-semibold text-base-800"
-              >clear summary</strong
-            >{" "}
-            so you understand the plan before anything executes. Same general
-            idea—an agent in your loop—with more emphasis on freshness,
-            transparency, and a seamless path from question to shipped change.
-          </Text>
-        </aside>
       </div>
     </div>
   </Wrapper>

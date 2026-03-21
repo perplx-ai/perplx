@@ -1,0 +1,35 @@
+---
+import Kicker from "@/components/assets/Kicker.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section class="bg-base-50">
+  <Wrapper variant="standard" class="relative py-20 md:py-24">
+    <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-8">
+      <Kicker>The problem</Kicker>
+      <div class="text-balance lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-base-900 lg:-mt-1"
+        >
+          Stale training is expensive—especially when it looks confident
+        </Text>
+        <Text tag="p" variant="textLG" class="mt-6 text-base-600">
+          Most AI coding agents lean on whatever the model memorized at training
+          time. When APIs move, deprecations land, or docs change, that “knowledge”
+          silently drifts—and you still pay for every retry, refactor, and
+          hallucinated fix. Wasted tokens aren’t just a line item: they’re the
+          tax you pay when the agent didn’t have up-to-date documentation and
+          training in the loop.
+        </Text>
+        <Text tag="p" variant="textBase" class="mt-6 text-base-600">
+          The result is predictable: more back-and-forth, more patches, and less
+          trust that the next suggestion is grounded in what vendors actually ship
+          today.
+        </Text>
+      </div>
+    </div>
+  </Wrapper>
+</section>

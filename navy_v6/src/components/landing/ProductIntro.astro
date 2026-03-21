@@ -1,0 +1,57 @@
+---
+import Kicker from "@/components/assets/Kicker.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const blocks = [
+  {
+    title: "What it is",
+    body: "A Perplexity-backed coding agent that pulls fresh context from the web and your stack—so suggestions match how APIs and packages work today, not last year’s training cut.",
+  },
+  {
+    title: "Who it’s for",
+    body: "Developers and small teams who ship fast but refuse black-box guesses: from vibe-coders and indie hackers to senior engineers and research-heavy workflows.",
+  },
+  {
+    title: "Why we built it",
+    body: "Because “smart” agents that don’t read current docs burn your time and tokens on confident mistakes. We built an agent that researches before it edits—and explains before it runs.",
+  },
+] as const;
+---
+
+<section class="border-b border-base-200 bg-white">
+  <Wrapper variant="standard" class="relative py-20 md:py-24">
+    <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-8 lg:gap-y-8">
+      <Kicker>Overview</Kicker>
+      <div class="lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-balance text-base-900 lg:-mt-1"
+        >
+          The short version
+        </Text>
+        <div
+          class="mt-10 grid grid-cols-1 gap-8 border-t border-base-200 pt-10 md:grid-cols-3 md:gap-10"
+        >
+          {
+            blocks.map((b) => (
+              <div>
+                <Text
+                  tag="h3"
+                  variant="textLG"
+                  class="font-display font-semibold text-base-900"
+                >
+                  {b.title}
+                </Text>
+                <Text tag="p" variant="textBase" class="mt-3 leading-relaxed text-base-600">
+                  {b.body}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
