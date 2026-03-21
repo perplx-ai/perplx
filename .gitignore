@@ -1,0 +1,12 @@
+.env
+.nova
+.wrangler
+
+/build
+/dist
+
+*.todo
+*.trace
+
+perplx
+node_modules
