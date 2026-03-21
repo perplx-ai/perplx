@@ -1,0 +1,20 @@
+name = "perplx-share"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "perplx-sessions"
+database_id = "4a1ca399-d42b-4c24-b819-864b222ed02b"
+migrations_dir = "drizzle"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "perplx-sessions"
+
+[[routes]]
+pattern = "share.perplx.net"
+custom_domain = true

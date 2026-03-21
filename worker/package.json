@@ -1,0 +1,23 @@
+{
+  "name": "perplx_share",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply perplx-sessions --remote",
+    "db:migrate:local": "wrangler d1 migrations apply perplx-sessions"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.2",
+    "hono": "^4.7.0",
+    "nanoid": "^5.1.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250620.0",
+    "drizzle-kit": "^0.31.4",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.22.0"
+  }
+}
