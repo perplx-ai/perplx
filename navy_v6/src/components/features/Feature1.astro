@@ -5,56 +5,108 @@ import Kicker from "@/components/assets/Kicker.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Components
-import LogoCloud1 from "@/components/testimonials/LogoCloud1.astro";
-const categories = [
-  "Startups",
-  "Agencies",
-  "Freelancers",
-  "SaaS Companies",
-  "E-commerce Businesses",
-  "Tech Enterprises",
-  "Educational Institutions",
-  "Non-profit Organizations",
-  "Open Source Projects",
-  "Digital Marketing Firms",
-  "Media and Publishing Companies",
-  "Government and Public Sector Entities",
-];
+
+const features = [
+  {
+    title: "Does the research for you",
+    subtitle:
+      "Skips the tab pile: it pulls current official documentation, package READMEs, and security notes instead of leaning on a frozen training snapshot—so answers match what vendors ship today.",
+  },
+  {
+    title: "Summaries you can actually read",
+    subtitle:
+      "Every suggested edit, dependency, or command comes with a short plain-language summary: what will change, why it matters, and what to watch for—so you stay in control and trust the next step.",
+  },
+  {
+    title: "Skills & custom commands",
+    subtitle:
+      "Define reusable skills—personalized instructions, scripts, and workflows—so the agent repeats your team’s patterns instead of improvising every session.",
+  },
+  {
+    title: "Easier, more seamless coding",
+    subtitle:
+      "From first prompt to merged change, the flow stays in your editor and repo conventions—fewer context switches, less glue work, and suggestions that fit the way you already build.",
+  },
+  {
+    title: "Right model & shareable chats",
+    subtitle:
+      "Switch between a lighter planning model and a flagship-class model by task, and share conversations when you need reviews, handoffs, or onboarding—without dumping raw logs into chat apps.",
+  },
+] as const;
 ---
 
 <section class="relative overflow-hidden">
   <Wrapper variant="standard" class="relative py-24">
     <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
-      <Kicker>Customers</Kicker>
+      <Kicker>Features</Kicker>
       <div class="relative text-balance lg:col-span-7">
         <Text
           tag="h2"
           variant="displaySM"
           class="font-display text-base-900 lg:-mt-1"
         >
-          Join the ranks of top teams and enterprises who trust Navy to power
-          their digital infrastructure.
+          Does the research for you—live docs and package context, not guesswork
+          from stale training data—then explains every suggestion before you hit
+          run.
         </Text>
         <Button
           size="xs"
           variant="muted"
           class="mt-8 w-fit"
           isLink={true}
-          href="/customers/home"
+          href="/pricing"
         >
-          Meet all all our customers</Button
-        >
-        <div class="space-y-8">
-          <ul class="flex flex-wrap pt-4 mt-4 border-t gap-2 border-base-100">
-            {
-              categories.map((category) => (
-                <li class="text-xs font-ligth text-base-500">{category}</li>
-              ))
-            }
-          </ul>
-          <LogoCloud1 />
+          View plans
+        </Button>
+
+        <div class="mt-16 grid grid-cols-1 gap-1 md:grid-cols-2">
+          {
+            features.map((item) => (
+              <div class="flex flex-col justify-between gap-2 bg-white p-4 md:min-h-[12rem] lg:aspect-square lg:min-h-0">
+                <Text tag="h3" variant="textBase" class="text-base-900">
+                  {item.title}
+                </Text>
+                <Text tag="p" variant="textBase" class="mt-2 text-base-500">
+                  {item.subtitle}
+                </Text>
+              </div>
+            ))
+          }
         </div>
+
+        <aside
+          class="mt-12 border border-base-200 bg-base-50 p-6 md:p-8"
+          aria-labelledby="compare-agents-heading"
+        >
+          <Text
+            tag="h3"
+            variant="textLG"
+            id="compare-agents-heading"
+            class="font-display font-semibold text-base-900"
+          >
+            How this differs from typical coding agents
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-4 text-base-600">
+            Many coding agents lean heavily on what the model already “knows”
+            from training—fast, but vulnerable to stale APIs and silent
+            assumptions. Perplex{" "}
+            <strong class="font-semibold text-base-800"
+              >does the research for you</strong
+            >
+            : it treats{" "}
+            <strong class="font-semibold text-base-800"
+              >up-to-date documentation</strong
+            >{" "}
+            as the source of truth, layers in your repo’s conventions, and pairs
+            every non-trivial suggestion with a{" "}
+            <strong class="font-semibold text-base-800"
+              >clear summary</strong
+            >{" "}
+            so you understand the plan before anything executes. Same general
+            idea—an agent in your loop—with more emphasis on freshness,
+            transparency, and a seamless path from question to shipped change.
+          </Text>
+        </aside>
       </div>
     </div>
   </Wrapper>
