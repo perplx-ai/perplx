@@ -1,6 +1,7 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import playfulLollipopSpiralPath from "./playfulLollipopSpiral.txt?raw";
 
 const snippets = [
   {
@@ -60,7 +61,8 @@ const personas = [
   {
     name: "Scholar",
     blurb: "Careful study & craft",
-    ariaLabel: "Scholar terminal persona with monocle",
+    ariaLabel:
+      "Scholar terminal persona: prompt shown as two eyes, monocle on the left",
   },
   {
     name: "Professional",
@@ -70,7 +72,8 @@ const personas = [
   {
     name: "Playful",
     blurb: "Learn by doing",
-    ariaLabel: "Terminal persona with propeller hat and lollipop — playful",
+    ariaLabel:
+      "Terminal persona with propeller hat and line-art swirl lollipop on a stick",
   },
 ] as const;
 ---
@@ -107,14 +110,16 @@ const personas = [
           height="88"
           fill="var(--perplexity-blue)"></rect>
         </g>
-        <!-- Centered prompt -->
+        <!-- Prompt as two eyes: tight pair so they read as eyes, not prompt syntax -->
         <text
-          x="400"
-          y="76"
           fill="white"
-          text-anchor="middle"
           class="font-mono font-bold"
-          style="font-size: 36px; letter-spacing: 0.02em;">&gt;_</text>
+          style="font-size: 36px;"
+          aria-hidden="true"
+        >
+          <tspan x="389" y="76" text-anchor="middle">&gt;</tspan>
+          <tspan x="411" y="72" text-anchor="middle">_</tspan>
+        </text>
         <!-- Four short 8-bit legs: outer pair = square hook feet; inner = simple elbow (like reference, compressed) -->
         <g
           shape-rendering="crispEdges"
@@ -205,32 +210,30 @@ const personas = [
                     fill="#3b7a87"
                   />
                   </g>
-                  <text
-                    x="80"
-                    y="82"
-                    fill="white"
-                    text-anchor="middle"
-                    class="font-mono"
-                    style="font-size: 18px;">&gt;_</text>
+                  <text fill="white" class="font-mono" style="font-size: 18px;">
+                    <tspan x="74" y="79" text-anchor="middle">&gt;</tspan>
+                    <tspan x="86" y="73" text-anchor="middle">_</tspan>
+                  </text>
+                  <!-- Monocle on the &gt; eye only -->
                   <circle
-                    cx="102"
-                    cy="72"
-                    r="9"
+                    cx="74"
+                    cy="69"
+                    r="8"
                     stroke="#3b7a87"
                     stroke-width="2.5"
                     shape-rendering="geometricPrecision"
-                    fill="rgba(255,255,255,0.15)"
+                    fill="rgba(255,255,255,0.12)"
                   />
                   <path
-                    d="M111 72 L125 68"
+                    d="M82 69 L96 62 L108 53"
                     stroke="#3b7a87"
                     stroke-width="1.8"
                     stroke-linecap="round"
                     shape-rendering="geometricPrecision"
                   />
                   <circle
-                    cx="125"
-                    cy="68"
+                    cx="110"
+                    cy="52"
                     r="2"
                     fill="#3b7a87"
                     shape-rendering="geometricPrecision"
@@ -272,13 +275,10 @@ const personas = [
                       fill="#3b7a87"
                     />
                   </g>
-                  <text
-                    x="80"
-                    y="86"
-                    fill="white"
-                    text-anchor="middle"
-                    class="font-mono"
-                    style="font-size: 18px;">&gt;_</text>
+                  <text fill="white" class="font-mono" style="font-size: 18px;">
+                    <tspan x="74" y="86" text-anchor="middle">&gt;</tspan>
+                    <tspan x="86" y="82" text-anchor="middle">_</tspan>
+                  </text>
                   <g
                     shape-rendering="crispEdges"
                     fill="none"
@@ -327,38 +327,38 @@ const personas = [
                     fill="#3b7a87"
                   />
                   </g>
-                  <text
-                    x="90"
-                    y="88"
-                    fill="white"
-                    text-anchor="middle"
-                    class="font-mono"
-                    style="font-size: 18px;">&gt;_</text>
-                  <line
-                    x1="148"
-                    y1="92"
-                    x2="148"
-                    y2="112"
-                    stroke="#3b7a87"
-                    stroke-width="2.8"
-                    shape-rendering="geometricPrecision"
-                  />
-                  <circle
-                    cx="148"
-                    cy="78"
-                    r="13"
-                    stroke="#3b7a87"
-                    stroke-width="2"
-                    fill="#e8f4f6"
-                    shape-rendering="geometricPrecision"
-                  />
-                  <path
-                    d="M140 72 Q148 80 156 72"
-                    stroke="#3b7a87"
-                    stroke-width="1.3"
-                    fill="none"
-                    shape-rendering="geometricPrecision"
-                  />
+                  <text fill="white" class="font-mono" style="font-size: 18px;">
+                    <tspan x="84" y="88" text-anchor="middle">&gt;</tspan>
+                    <tspan x="96" y="84" text-anchor="middle">_</tspan>
+                  </text>
+                  <!-- Lollipop: thin circle + continuous center spiral + straight stick (sketch-style) -->
+                  <g shape-rendering="geometricPrecision">
+                    <line
+                      x1="148"
+                      y1="88"
+                      x2="148"
+                      y2="122"
+                      stroke="#3b7a87"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="148"
+                      cy="71"
+                      r="17"
+                      fill="#ffffff"
+                      stroke="#3b7a87"
+                      stroke-width="1.75"
+                    />
+                    <path
+                      d={playfulLollipopSpiralPath.trim()}
+                      fill="none"
+                      stroke="#3b7a87"
+                      stroke-width="1.45"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
                   <g
                     shape-rendering="crispEdges"
                     fill="none"
