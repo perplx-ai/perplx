@@ -1,0 +1,216 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import Dashboard1 from "@/images/assets/dashboard1.jpg";
+import Dashboard2 from "@/images/assets/dashboard2.jpg";
+import Dashboard3 from "@/images/assets/dashboard3.jpg";
+import Dashboard4 from "@/images/assets/dashboard4.jpg";
+import Kicker from "@/components/assets/Kicker.astro";
+
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper variant="standard" class="relative py-24">
+    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+      <Kicker>no fluff</Kicker>
+      <div class="relative text-balance lg:col-span-6">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-base-900 lg:-mt-1"
+        >
+          Build, scale, and ship without begging finance for permission — real
+          infrastructure that doesn’t nickel-and-dime you.
+        </Text>
+      </div>
+    </div>
+    <div>
+      <div class="mt-12 grid grid-cols-1 gap-y-12 lg:grid-cols-2">
+        <div>
+          <div
+            class="flex flex-col mt-12 overflow-x-auto gap-8 md:overflow-x-visible"
+          >
+            <button
+              class="flex items-center w-full text-left tab-btn group transition-all duration-300 gap-2 foucs:outline-none"
+              data-tab="feature1"
+            >
+              <div
+                aria-hidden="true"
+                class="hidden pointer-events-none size-3 bg-base-900 group-focus:block duration-300"
+              >
+              </div>
+
+              <span class="group-focus:translate-x-2 duration-300">
+                Team? Unlimited.</span
+              >
+            </button>
+            <button
+              class="flex items-center w-full text-left tab-btn group transition-all duration-300 gap-2 foucs:outline-none"
+              data-tab="feature2"
+            >
+              <div
+                aria-hidden="true"
+                class="hidden pointer-events-none size-3 bg-base-900 group-focus:block duration-300"
+              >
+              </div>
+
+              <span class="group-focus:translate-x-2 duration-300"
+                >Limits Are Cancelled</span
+              >
+            </button>
+            <button
+              class="flex items-center w-full text-left tab-btn group transition-all duration-300 gap-2 foucs:outline-none"
+              data-tab="feature3"
+            >
+              <div
+                aria-hidden="true"
+                class="hidden pointer-events-none size-3 bg-base-900 group-focus:block duration-300"
+              >
+              </div>
+
+              <span class="group-focus:translate-x-2 duration-300">
+                Free Traffic, No Catches</span
+              >
+            </button>
+            <button
+              class="flex items-center w-full text-left tab-btn group transition-all duration-300 gap-2 foucs:outline-none"
+              data-tab="feature4"
+            >
+              <div
+                aria-hidden="true"
+                class="hidden pointer-events-none size-3 bg-base-900 group-focus:block duration-300"
+              >
+              </div>
+
+              <span class="group-focus:translate-x-2 duration-300">
+                Deploy Without Bottlenecksœ</span
+              >
+            </button>
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="tab-content active" id="feature1">
+            <div
+              class="relative p-8 pr-0 opacity-0 translate-y-8 bg-dots"
+              id="content-block-1"
+            >
+              <Image
+                src={Dashboard1}
+                alt="Dashboard 1"
+                width="1200"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="object-cover object-left h-150 size-full bg-base-50"
+              />
+            </div>
+          </div>
+          <div class="hidden tab-content" id="feature2">
+            <div class="items-center grid md:grid-cols-1">
+              <div
+                class="relative p-8 pr-0 opacity-0 translate-y-8 bg-dots"
+                id="content-block-2"
+              >
+                <Image
+                  src={Dashboard2}
+                  alt="Dashboard 2"
+                  width="1200"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  class="object-cover object-left h-150 size-full bg-base-50"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="hidden tab-content" id="feature3">
+            <div
+              class="relative p-8 pr-0 opacity-0 translate-y-8 bg-dots"
+              id="content-block-3"
+            >
+              <Image
+                src={Dashboard3}
+                alt="Dashboard 3"
+                width="1200"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="object-cover object-left h-150 size-full bg-base-50"
+              />
+            </div>
+          </div>
+          <div class="tab-content active" id="feature4">
+            <div
+              class="relative p-8 pr-0 opacity-0 translate-y-8 bg-dots"
+              id="content-block-"
+            >
+              <Image
+                src={Dashboard4}
+                alt="Dashboard 4"
+                width="1200"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="object-cover object-left h-150 size-full bg-base-50"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+    function setActiveTab(tabId) {
+      tabButtons.forEach((btn) => {
+        if (btn.getAttribute("data-tab") === tabId) {
+          btn.classList.add("active", "opacity-100", "text-base-900");
+          btn.classList.remove("opacity-50", "text-base-500");
+        } else {
+          btn.classList.remove("active", "opacity-100", "text-base-900");
+          btn.classList.add("opacity-50", "text-base-500");
+        }
+      });
+      tabContents.forEach((content) => {
+        if (content.id === tabId) {
+          content.classList.remove("hidden");
+        } else {
+          content.classList.add("hidden");
+        }
+      });
+    }
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const tabId = button.getAttribute("data-tab");
+        setActiveTab(tabId);
+      });
+    });
+    // Set the first tab as active by default
+    setActiveTab("feature1");
+    // Scroll animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+            entry.target.style.transition = "all 0.5s ease-out";
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+    // Observe all code blocks
+    document.querySelectorAll('[id^="content-block-"]').forEach((block) => {
+      observer.observe(block);
+    });
+  });
+</script>

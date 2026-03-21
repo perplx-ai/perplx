@@ -1,0 +1,99 @@
+---
+// Assets
+import Kicker from "@/components/assets/Kicker.astro";
+
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const faqs = [
+  {
+    question: "Is there a limit to how much audio I can generate?",
+    answer:
+      "If you're on the free plan, yes — we’re generous, but not reckless. Paid plans scale from ‘fun side project’ to ‘we accidentally launched a startup.’",
+  },
+  {
+    question: "Can I clone my voice?",
+    answer:
+      "Yes, and it's freakishly good. You’ll wonder if you recorded it yourself or if we hired your evil twin.",
+  },
+  {
+    question: "How fast is the real-time voice response?",
+    answer:
+      "Fast enough to feel psychic. We’re talking sub-blink latency — no buffering, no weird pauses, just instant talkback.",
+  },
+  {
+    question: "Can I use this in production apps?",
+    answer:
+      "Please do. We built this for real builders, not demo decks. Production-safe, scalable, and not held together with duct tape.",
+  },
+  {
+    question: "What audio formats do you support?",
+    answer:
+      "MP3, WAV, and whatever else your audio nerd heart desires — depending on your plan. No DRM traps, just clean sound.",
+  },
+  {
+    question: "Do you support multiple voices or languages?",
+    answer:
+      "Yes to both. Clone your voice, swap in others, or go multilingual. Your app doesn’t have to speak just one language — why should you?",
+  },
+  {
+    question: "Can I integrate this with my stack?",
+    answer:
+      "Easily. Use our API, set up webhooks, and wire it into whatever tech mess you’re running. No judgment.",
+  },
+  {
+    question: "What happens if I hit my usage limit?",
+    answer:
+      "We don’t shut you down mid-sentence — you’ll get a heads-up before anything breaks. Then you can upgrade like a grown-up.",
+  },
+];
+---
+
+<section>
+  <Wrapper variant="standard" class="py-24 lg:py-32">
+    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+      <Kicker>Faq it</Kicker>
+      <div class="relative lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-base-900 text-balance lg:-mt-1"
+        >
+          Real questions. Real answers. No marketing fluff.
+        </Text>
+
+        <div
+          class="relative w-full mt-24 p-8 bg-dots"
+        >
+          {
+            faqs.map((faq) => (
+              <details class="text-left cursor-pointer group even:bg-base-50 bg-white">
+                <summary class="flex items-center w-full p-4 text-left text-base-900 select-none gap-4  hover:text-accent-600 ">
+                  <svg
+                    class="w-5 h-5 duration-300 ease-out text-accent-400 transform group-open:-rotate-45"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 6v12m6-6H6"
+                    />
+                  </svg>
+                  {faq.question}
+                </summary>
+                <div class="p-4 pt-2 text-sm text-base-600 text-balance ">
+                  {faq.answer}
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

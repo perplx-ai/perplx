@@ -1,0 +1,155 @@
+---
+import { Image } from "astro:assets";
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import ShareButtons from "@/components/fundations/elements/ShareButtons.astro";
+import BlogEntry from "@/components/blog/BlogEntry.astro";
+// Content
+const { frontmatter } = Astro.props;
+import { getEntry } from "astro:content";
+const team = await getEntry("team", frontmatter.team);
+// Get all posts and filter by tag
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+const relatedPosts = allPosts.filter((post) =>
+  post.data.tags.some((tag) => frontmatter.tags.includes(tag))
+);
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>
+          {
+            frontmatter.tags.map((tag) => (
+              <>
+                <a href={`/blog/tags/${tag}`} class="capitalize ">
+                  {tag}
+                </a>
+              </>
+            ))
+          }
+        </Kicker>
+        <div class="lg:col-span-7">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1 text-balance"
+          >
+            {frontmatter.title}
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-1 text-base-700">
+            {frontmatter.description}
+          </Text>
+          <Text tag="p" variant="textXS" class="mt-4 text-base-700">
+            <time
+              datetime={new Date(frontmatter.pubDate).toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                }
+              )}
+            >
+              {
+                new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                })
+              }
+            </time>
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section class="overflow-hidden">
+    <Wrapper variant="standard" class="py-12 overflow-hidden">
+      <div class="p-8 bg-dots">
+        <Image
+          width={1000}
+          height={1000}
+          alt={frontmatter.image.alt}
+          src={frontmatter.image.url}
+          class="relative object-cover object-top size-full aspect-4/2"
+        />
+      </div>
+      <div class="max-w-xl mx-auto mt-12">
+        <Wrapper variant="prose">
+          <slot />
+        </Wrapper>
+        <div class="w-full pt-8 mt-8">
+          {
+            team && (
+              <div class="grid grid-cols-2 md:grid-cols-2 gap-1">
+                <div>
+                  <a href={`/team/${team.id}`}>
+                    {team?.data?.image?.url && (
+                      <Image
+                        width={800}
+                        height={800}
+                        src={team.data.image.url}
+                        alt={team.data.image.alt}
+                        class="object-cover size-full"
+                      />
+                    )}
+                  </a>
+                </div>
+                <div class="p-8 bg-dots">
+                  <div class="flex items-end p-4 bg-white size-full">
+                    <Text tag="p" variant="textXS" class="text-base-500 ">
+                      This article was written by <span>{team.data.name}</span>{" "}
+                      a<span> {team.data.role}</span> specialist at Navy
+                    </Text>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+        </div>
+        <div class="flex flex-wrap mt-12 gap-2">
+          <Text tag="p" variant="textXS" class="text-base-500">
+            Share this article:
+          </Text>
+          <ShareButtons description={frontmatter.description} />
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  {
+    relatedPosts.length > 0 && (
+      <section>
+        <Wrapper variant="standard" class="py-24 ">
+          <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+            <Kicker> More</Kicker>
+            <Text
+              tag="h2"
+              variant="displayMD"
+              class="text-base-900 font-display lg:col-span-7 lg:-mt-1 "
+            >
+              Related posts
+            </Text>
+          </div>
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-1">
+            {relatedPosts.slice(0, 3).map((post) => (
+              <BlogEntry post={post} />
+            ))}
+          </div>
+        </Wrapper>
+      </section>
+    )
+  }
+</BaseLayout>

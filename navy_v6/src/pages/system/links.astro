@@ -1,0 +1,307 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Plus from "@/components/fundations/icons/Plus.astro";
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>   Links</Kicker>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-display text-base-900 lg:-mt-1 text-balance lg:col-span-7"
+        >
+         All link variants
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+     
+      <div class=" grid grid-cols-1 md:grid-cols-2 gap-12 text-base-400">
+        <!-- Default -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Default text
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button isLink={true} href="#_" size="xxs" variant="default"
+                >Default XXS</Button
+              >
+              <Button isLink={true} href="#_" size="xs" variant="default"
+                >Default XS</Button
+              >
+              <Button isLink={true} href="#_" size="sm" variant="default"
+                >Default SM</Button
+              >
+              <Button isLink={true} href="#_" size="base" variant="default"
+                >Default Base</Button
+              >
+              <Button isLink={true} href="#_" size="md" variant="default"
+                >Default MD</Button
+              >
+              <Button isLink={true} href="#_" size="lg" variant="default"
+                >Default LG</Button
+              >
+              <Button isLink={true} href="#_" size="xl" variant="default"
+                >Default XL</Button
+              >
+            </div>
+          </div>
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Icon
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button
+                isLink={true}
+                href="#_"
+                size="xxs"
+                variant="default"
+                iconOnly><Plus slot="icon" size="sm" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="xs"
+                variant="default"
+                iconOnly><Plus slot="icon" size="sm" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="sm"
+                variant="default"
+                iconOnly><Plus slot="icon" size="base" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="base"
+                variant="default"
+                iconOnly><Plus slot="icon" size="base" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="md"
+                variant="default"
+                iconOnly><Plus slot="icon" size="lg" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="lg"
+                variant="default"
+                iconOnly><Plus slot="icon" size="xl" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="xl"
+                variant="default"
+                iconOnly><Plus slot="icon" size="xl" /></Button
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Accent -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Accent text
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button isLink={true} href="#_" size="xxs" variant="accent"
+                >Accent XXS</Button
+              >
+              <Button isLink={true} href="#_" size="xs" variant="accent"
+                >Accent XS</Button
+              >
+              <Button isLink={true} href="#_" size="sm" variant="accent"
+                >Accent SM</Button
+              >
+              <Button isLink={true} href="#_" size="base" variant="accent"
+                >Accent Base</Button
+              >
+              <Button isLink={true} href="#_" size="md" variant="accent"
+                >Accent MD</Button
+              >
+              <Button isLink={true} href="#_" size="lg" variant="accent"
+                >Accent LG</Button
+              >
+              <Button isLink={true} href="#_" size="xl" variant="accent"
+                >Accent XL</Button
+              >
+            </div>
+          </div>
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Icon
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button
+                isLink={true}
+                href="#_"
+                size="xxs"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="sm" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="xs"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="sm" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="sm"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="base" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="base"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="base" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="md"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="lg" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="lg"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="xl" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="xl"
+                variant="accent"
+                iconOnly><Plus slot="icon" size="xl" /></Button
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Muted -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Muted text
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button isLink={true} href="#_" size="xxs" variant="muted"
+                >Muted XXS</Button
+              >
+              <Button isLink={true} href="#_" size="xs" variant="muted"
+                >Muted XS</Button
+              >
+              <Button isLink={true} href="#_" size="sm" variant="muted"
+                >Muted SM</Button
+              >
+              <Button isLink={true} href="#_" size="base" variant="muted"
+                >Muted Base</Button
+              >
+              <Button isLink={true} href="#_" size="md" variant="muted"
+                >Muted MD</Button
+              >
+              <Button isLink={true} href="#_" size="lg" variant="muted"
+                >Muted LG</Button
+              >
+              <Button isLink={true} href="#_" size="xl" variant="muted"
+                >Muted XL</Button
+              >
+            </div>
+          </div>
+          <div>
+            <Text
+              tag="p"
+              variant="textXS"
+              class="font-medium text-base-900 uppercase"
+            >
+              Icon
+            </Text>
+            <div class="flex flex-col mt-2 gap-4">
+              <Button
+                isLink={true}
+                href="#_"
+                size="xxs"
+                variant="muted"
+                iconOnly><Plus slot="icon" size="sm" /></Button
+              >
+              <Button isLink={true} href="#_" size="xs" variant="muted" iconOnly
+                ><Plus slot="icon" size="sm" /></Button
+              >
+              <Button isLink={true} href="#_" size="sm" variant="muted" iconOnly
+                ><Plus slot="icon" size="base" /></Button
+              >
+              <Button
+                isLink={true}
+                href="#_"
+                size="base"
+                variant="muted"
+                iconOnly><Plus slot="icon" size="base" /></Button
+              >
+              <Button isLink={true} href="#_" size="md" variant="muted" iconOnly
+                ><Plus slot="icon" size="lg" /></Button
+              >
+              <Button isLink={true} href="#_" size="lg" variant="muted" iconOnly
+                ><Plus slot="icon" size="xl" /></Button
+              >
+              <Button isLink={true} href="#_" size="xl" variant="muted" iconOnly
+                ><Plus slot="icon" size="xl" /></Button
+              >
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

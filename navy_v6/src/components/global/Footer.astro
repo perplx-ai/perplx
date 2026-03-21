@@ -1,0 +1,106 @@
+---
+// Assets
+import Logo from "@/components/assets/Logo.astro";
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import BigLogo from "@/components/assets/BigLogo.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+
+// Fundatons
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const footerLinks = [
+  {
+    heading: "Navigation",
+    links: [
+      { label: "Overview", href: "/system/overview" },
+      { label: "Buttons", href: "/system/buttons" },
+      { label: "Links", href: "/system/links" },
+      { label: "Colors", href: "/system/colors" },
+      { label: "Typography", href: "/system/typography" },
+    ],
+  },
+  {
+    heading: "Stay updated",
+    links: [
+      {
+        label: "License",
+        href: "https://www.lexingtonthemes.com/legal/license",
+      },
+      {
+        label: "Documentation",
+        href: "https://www.lexingtonthemes.com/documentation",
+      },
+    ],
+  },
+  {
+    heading: "Socials",
+    links: [
+      {
+        label: "@lexingtonthemes",
+        href: "https://twitter.com/lexingtonthemes",
+      },
+      {
+        label: "@Mike_Andreuzza",
+        href: "https://twitter.com/Mike_Andreuzza",
+      },
+    ],
+  },
+  {
+    heading: "More Themes",
+    links: [
+      {
+        label: "Lexington Themes",
+        href: "https://lexingtonthemes.com/",
+      },
+    ],
+  },
+];
+---
+
+<footer class="relative overflow-hidden">
+  <Burst side="right" />
+  <Dots />
+  <SectionDivider flipped={true} />
+  <Wrapper
+    variant="standard"
+    class="relative py-48 overflow-hidden border-white"
+  >
+    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-8">
+      <a href="/" class="flex items-center text-sm text-white gap-2">
+        <span class="sr-only">Go to homepage</span>
+        <Logo class="h-6 text-base-900" />
+      </a>
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:col-span-7">
+        {
+          footerLinks.map((section) => (
+            <div>
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="text-base-900 font-display"
+              >
+                {section.heading}
+              </Text>
+              <ul role="list" class="mt-2 text-xs space-y-1 text-base-600">
+                {section.links.map((link) => (
+                  <li>
+                    <a
+                      title="Button to your page"
+                      aria-label="your label"
+                      href={link.href}
+                      class="hover:underline"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+  <BigLogo class="mask-b-from-0% mask-r-from-0%" />
+</footer>

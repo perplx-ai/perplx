@@ -1,0 +1,29 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section class="relative overflow-hidden">
+  <Burst />
+  <Dots />
+  <SectionDivider />
+
+  <Wrapper
+    variant="standard"
+    class="relative py-24 lg:h-[calc(100vh-4rem)] flex flex-col items-center justify-end"
+  >
+    <Text tag="h1" variant="displayXL" class="font-display tracking-tight">
+      <span class="text-base-900 lg:block"
+        >Launch your projects with ease —
+      </span>
+      <span class="text-base-600 lg:block"
+        >no more dealing with complicated setups or workflows.
+      </span>
+    </Text>
+  </Wrapper>
+</section>

@@ -1,0 +1,358 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Secitons
+import Faq from "@/components/helpcenter/Faq.astro";
+import Testimonial1 from "@/components/testimonials/Testimonial1.astro";
+// Icons (import all used ones)
+import Check from "@/components/fundations/icons/Check.astro";
+import Minus from "@/components/fundations/icons/Minus.astro";
+const pricingOptions = [
+  {
+    id: "AppHost",
+    title: "App Hosting",
+    price: "$5/mo",
+    description: "Run your app without setting your wallet on fire.",
+    button: {
+      text: "See pricing",
+      variant: "muted",
+    },
+    features: [
+      { title: "Deploy", text: "Auto-deploy on git push" },
+      { title: "Containers", text: "Docker support" },
+      { title: "Reach", text: "25 global data centers" },
+      { title: "Scaling", text: "Vertical & horizontal scaling" },
+      { title: "Auto-scaling", text: "Auto-scaling included" },
+    ],
+  },
+  {
+    id: "DataStack",
+    title: "Data Stack",
+    price: "$5/mo + usage",
+    description: "Managed databases without surprises.",
+    button: {
+      text: "Get started",
+      variant: "accent",
+    },
+    features: [
+      { title: "Databases", text: "5 managed DB types" },
+      { title: "Networking", text: "Private network connections" },
+      { title: "Backups", text: "Daily backups" },
+      { title: "Storage", text: "S3-compatible storage" },
+      { title: "No Fees", text: "No ingress or egress fees" },
+    ],
+  },
+];
+// TAble
+export const pricingFeatures = [
+  {
+    category: "Deployment & Scaling",
+    title: "Launch and grow with ease",
+    description:
+      "Everything you need to deploy, manage, and scale your application globally—automatically.",
+    features: [
+      {
+        label: "Git-based deploys",
+        title: "Push to Deploy",
+        description:
+          "Trigger deployments automatically every time you push to your Git repository.",
+        values: ["yes", "yes"],
+      },
+      {
+        label: "Docker support",
+        title: "Container Ready",
+        description:
+          "Deploy containerized applications with full Docker support for complex environments.",
+        values: ["yes", "no"],
+      },
+      {
+        label: "Auto-scaling",
+        title: "Elastic Scaling",
+        description:
+          "Your app scales up or down based on traffic—no manual configs needed.",
+        values: ["yes", "no"],
+      },
+      {
+        label: "Vertical scaling",
+        title: "Resource Flexibility",
+        description:
+          "Add more CPU or memory to your app without downtime or redeploys.",
+        values: ["yes", "yes"],
+      },
+      {
+        label: "Global locations",
+        title: "Edge Network",
+        description:
+          "Serve your app from 25 global data centers or 6 Cloudflare-powered storage regions.",
+        values: ["25 data centers", "6 storage regions"],
+      },
+    ],
+  },
+  {
+    category: "Storage & Data",
+    title: "Store, serve, and scale your data",
+    description:
+      "From object storage to managed databases, handle all your app’s data needs.",
+    features: [
+      {
+        label: "Managed databases",
+        title: "Database-as-a-Service",
+        description:
+          "Provision and scale production-ready databases with zero maintenance overhead.",
+        values: ["no", "5 types"],
+      },
+      {
+        label: "Daily backups",
+        title: "Automated Backups",
+        description:
+          "Stay safe with daily off-site backups of your entire database stack.",
+        values: ["no", "yes"],
+      },
+      {
+        label: "S3-compatible API",
+        title: "Familiar API",
+        description:
+          "Easily integrate with existing tools using an S3-compatible interface.",
+        values: ["no", "yes"],
+      },
+      {
+        label: "No ingress/egress fees",
+        title: "Transparent Pricing",
+        description:
+          "No extra costs for uploading or downloading your data—ever.",
+        values: ["no", "yes"],
+      },
+      {
+        label: "Private networking",
+        title: "Secure Connectivity",
+        description:
+          "Keep sensitive data protected with internal private networking options.",
+        values: ["no", "yes"],
+      },
+    ],
+  },
+  {
+    category: "Support & Access",
+    title: "Control and support where it counts",
+    description:
+      "Full control through CLI & API with helpful support when you need it.",
+    features: [
+      {
+        label: "Email support",
+        title: "Customer Support",
+        description:
+          "Reach out via email for help—basic or priority based on your plan.",
+        values: ["basic", "priority"],
+      },
+      {
+        label: "CLI & API access",
+        title: "Developer First",
+        description:
+          "Use our powerful CLI and API to automate deployments and control your setup.",
+        values: ["yes", "yes"],
+      },
+      {
+        label: "Usage-based billing",
+        title: "Only Pay for What You Use",
+        description:
+          "Flat-rate or usage-based billing—choose what fits your growth curve.",
+        values: ["flat", "usage + flat"],
+      },
+      {
+        label: "Free trial available",
+        title: "Try Before You Buy",
+        description:
+          "No commitment required—test the platform with a free trial.",
+        values: ["yes", "yes"],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Pricing</Kicker>
+        <div class="relative text-balance lg:col-span-7">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1"
+          >
+            Pricing for side projects, fake startups, and actual businesses
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-700 mt-1">
+            Free while you mess around. Pay when your idea grows legs.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 md:grid-cols-2">
+        {
+          pricingOptions.map((tier) => (
+            <div class="flex flex-col p-8 bg-dots">
+              <div class="p-4 bg-white h-full flex flex-col gap-12 justify-between">
+                <div>
+                  <div>
+                    <div>
+                      <Text
+                        tag="h3"
+                        variant="textLG"
+                        class="font-display text-base-900"
+                      >
+                        {tier.title}
+                      </Text>
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="mt-1 text-balance text-base-500"
+                      >
+                        {tier.description}
+                      </Text>
+                    </div>
+                    <Text
+                      variant="textBase"
+                      class="pt-2 mt-2 font-mono uppercase border-t border-base-100 text-base-900"
+                    >
+                      <span>{tier.price}</span>
+                    </Text>
+                  </div>
+                  <ul
+                    class="flex flex-col mt-8 text-sm gap-y-3 divide-y divide-base-100 text-base-500"
+                    role="list"
+                  >
+                    {tier.features.map((feature) => (
+                      <li class="pt-2.5 pb-1">
+                        <Text
+                          tag="h3"
+                          variant="textXS"
+                          class="uppercase  text-base-500"
+                        >
+                          {feature.title}
+                        </Text>
+                        <Text tag="p" variant="textSM" class="text-base-900 ">
+                          {feature.text}
+                        </Text>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Button variant={tier.button.variant} size="sm" class="mt-12">
+                  {tier.button.text}
+                </Button>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div
+        class="relative z-0 w-full mt-1 border-t border-base-100 overflow-x-auto bg-white scrollbar-hide"
+      >
+        <div class="min-w-[768px] overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="text-base text-center border-b border-base-100">
+              <tr>
+                <th class="px-4 py-4 font-normal text-left text-base-900"
+                  >Features</th
+                >
+                <th class="px-4 py-4 font-normal text-base-900">App hosting</th>
+                <th class="px-4 py-4 font-normal text-base-900">Data stack</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                pricingFeatures.map(
+                  ({
+                    category,
+                    title: catTitle,
+                    description: catDesc,
+                    features,
+                  }) => (
+                    <>
+                      <tr>
+                        <td
+                          colspan="5"
+                          class="px-4 pt-12 pb-4 text-base font-normal text-base-900 bg-base-100"
+                        >
+                          <Text
+                            tag="h3"
+                            variant="textXS"
+                            class="uppercase  text-base-600"
+                          >
+                            {catTitle}
+                          </Text>
+                          <Text
+                            tag="p"
+                            variant="textSM"
+                            class="text-base-900 max-w-xs text-balance"
+                          >
+                            {catDesc}
+                          </Text>
+                        </td>
+                      </tr>
+                      {features.map(({ label, title, description, values }) => (
+                        <tr class="even:bg-base-50/50">
+                          <td class="px-4 py-8 text-left align-top text-base-600">
+                            <Text
+                              tag="h4"
+                              variant="textXS"
+                              class="uppercase  text-base-600"
+                            >
+                              {title}
+                            </Text>
+                            <Text
+                              tag="p"
+                              variant="textSM"
+                              class="text-base-900 max-w-xs text-balance"
+                            >
+                              {description}
+                            </Text>
+                          </td>
+                          {values.map((value) => (
+                            <td class="px-4 py-4 text-center align-middle">
+                              {value === "yes" ? (
+                                <Check
+                                  size="sm"
+                                  class="mx-auto text-accent-600"
+                                />
+                              ) : value === "no" ? (
+                                <Minus
+                                  size="sm"
+                                  class="mx-auto text-base-500"
+                                />
+                              ) : (
+                                <span class="text-base-600">{value}</span>
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </>
+                  )
+                )
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <Testimonial1 />
+  <Faq />
+</BaseLayout>

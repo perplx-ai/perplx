@@ -1,0 +1,61 @@
+---
+// Assets
+import Kicker from "@/components/assets/Kicker.astro";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import LogoCloud1 from "@/components/testimonials/LogoCloud1.astro";
+const categories = [
+  "Startups",
+  "Agencies",
+  "Freelancers",
+  "SaaS Companies",
+  "E-commerce Businesses",
+  "Tech Enterprises",
+  "Educational Institutions",
+  "Non-profit Organizations",
+  "Open Source Projects",
+  "Digital Marketing Firms",
+  "Media and Publishing Companies",
+  "Government and Public Sector Entities",
+];
+---
+
+<section class="relative overflow-hidden">
+  <Wrapper variant="standard" class="relative py-24">
+    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+      <Kicker>Customers</Kicker>
+      <div class="relative text-balance lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-base-900 lg:-mt-1"
+        >
+          Join the ranks of top teams and enterprises who trust Navy to power
+          their digital infrastructure.
+        </Text>
+        <Button
+          size="xs"
+          variant="muted"
+          class="mt-8 w-fit"
+          isLink={true}
+          href="/customers/home"
+        >
+          Meet all all our customers</Button
+        >
+        <div class="space-y-8">
+          <ul class="flex flex-wrap pt-4 mt-4 border-t gap-2 border-base-100">
+            {
+              categories.map((category) => (
+                <li class="text-xs font-ligth text-base-500">{category}</li>
+              ))
+            }
+          </ul>
+          <LogoCloud1 />
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

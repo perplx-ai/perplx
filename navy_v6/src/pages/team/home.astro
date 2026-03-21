@@ -1,0 +1,53 @@
+---
+// Assets
+import Burst from "@/components/assets/Burst.astro";
+import Dots from "@/components/assets/Dots.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import TeamEntry2 from "@/components/team/TeamEntry2.astro";
+// Content
+import { getCollection } from "astro:content";
+const allAuthors = await getCollection("team");
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Team</Kicker>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-display text-base-900 lg:-mt-1 text-balance lg:col-span-7"
+        >
+          Meet the humans behind the code — building cool stuff, dodging
+          meetings, and occasionally pushing to main
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+  <section class="relative overflow-hidden">
+    <Wrapper variant="standard" class="py-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+        {
+          // Sorting authors alphabetically inline
+          allAuthors
+            .sort((a, b) => {
+              const nameA = a.data.name.toLowerCase();
+              const nameB = b.data.name.toLowerCase();
+              return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+            })
+            .map((post) => <TeamEntry2 post={post} />)
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

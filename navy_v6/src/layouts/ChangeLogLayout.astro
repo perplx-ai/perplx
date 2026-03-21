@@ -1,0 +1,96 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+const { frontmatter } = Astro.props;
+// Breadcrumbs Data
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: frontmatter.page, href: "#" },
+];
+---
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>
+          <time
+            datetime={new Date(frontmatter.pubDate).toLocaleDateString(
+              "en-US",
+              {
+                year: "numeric",
+                month: "numeric",
+                day: "2-digit",
+              }
+            )}
+          >
+            {
+              new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "numeric",
+                day: "2-digit",
+              })
+            }
+          </time></Kicker
+        >
+        <div class="lg:col-span-7 text-balance">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1"
+          >
+            {frontmatter.page}
+          </Text>
+          <Text tag="p" variant="textBase" class="mt-1 text-base-700">
+            {frontmatter.description}
+          </Text>
+          <nav aria-label="Breadcrumb" class="mt-12">
+            <ol class="flex items-center text-sm gap-x-2 text-base-900">
+              {
+                breadcrumbs.map((item, index) => (
+                  <>
+                    <li>
+                      {index < breadcrumbs.length - 1 ? (
+                        <a
+                          href={item.href}
+                          class="text-xs  hover:text-accent-600"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <span class="text-xs  text-base-900">{item.label}</span>
+                      )}
+                    </li>
+                    {index < breadcrumbs.length - 1 && (
+                      <li class="text-base-400">
+                        <ChevronRight size="sm" />
+                      </li>
+                    )}
+                  </>
+                ))
+              }
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <Wrapper variant="prose" class="max-w-xl mx-auto">
+        <slot />
+      </Wrapper>
+    </Wrapper>
+  </section>
+</BaseLayout>

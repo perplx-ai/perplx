@@ -1,0 +1,98 @@
+---
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>contact</Kicker>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-display text-base-900 lg:-mt-1 text-balance lg:col-span-7"
+        >
+          Got thoughts? Praise? Petty gripes? Go ahead — we check this inbox
+          more than we probably should.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+   <Wrapper variant="standard" class="py-24">
+      <div class="relative w-full max-w-md mx-auto md:px-8">
+        <form class=" space-y-4">
+          <div class="w-full">
+            <div class="flex items-baseline justify-between mb-1">
+              <label for="name" class="text-sm font-medium text-base-500"
+                >Full Name</label
+              >
+            </div>
+            <div class="relative z-0 focus-within:z-10">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Jane Doe"
+                class="block w-full px-4 py-2 text-xs leading-tight align-middle border border-transparent bg-base-50 transition duration-300 ease-in-out h-9 rounded-md text-base-500 focus:ring-1 placeholder-base-400 focus:ring-accent-500 focus:ring-2 focus:outline-none"
+              />
+            </div>
+          </div>
+          <div class="w-full">
+            <div class="flex items-baseline justify-between mb-1">
+              <label for="email" class="text-sm font-medium text-base-500"
+                >Email Address</label
+              >
+            </div>
+            <div class="relative z-0 focus-within:z-10">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                class="block w-full px-4 py-2 text-xs leading-tight align-middle border border-transparent bg-base-50 transition duration-300 ease-in-out h-9 rounded-md text-base-500 focus:ring-1 placeholder-base-400 focus:ring-accent-500 focus:ring-2 focus:outline-none"
+                inputmode="email"
+              />
+            </div>
+          </div>
+          <div class="w-full">
+            <div class="flex items-baseline justify-between mb-1">
+              <label for="message" class="text-sm font-medium text-base-500"
+                >Your Message</label
+              >
+            </div>
+            <div class="relative z-0 focus-within:z-10">
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="What's on your mind?"
+                class="block w-full px-4 py-2 text-xs leading-tight align-middle border border-transparent bg-base-50 transition duration-300 ease-in-out  rounded-md text-base-500 focus:ring-1 placeholder-base-400 focus:ring-accent-500 focus:ring-2 focus:outline-none"
+              ></textarea>
+            </div>
+          </div>
+          <Button
+            size="base"
+            variant="accent"
+            gap="sm"
+            type="submit"
+            class="w-full"
+          >
+            Send Message
+          </Button>
+        </form>
+      </div>
+   </Wrapper>
+  </section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+// Content
+const { url, title, description, pubDate } = {
+  url: "/blog/posts/" + Astro.props.post.id,
+  title: Astro.props.post.data.title,
+  description: Astro.props.post.data.description,
+  pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  }),
+};
+---
+
+<article class="relative p-8 bg-dots">
+  <a
+    href={url}
+    title={`Read more: ${title}`}
+    aria-label={`Read blog post: ${title}`}
+    class="absolute inset-0 z-10"></a>
+  <div class={`p-4  text-balance bg-white  h-full`}>
+    <Text tag="p" variant="textXS" class="uppercase text-base-500">
+      {pubDate}
+    </Text>
+    <Text tag="h3" variant="textBase" class="mt-24 text-base-900 lg:mt-32">
+      {title}
+    </Text>
+    <Text tag="p" variant="textXS" class="mt-1 text-base-500">
+      {description}
+    </Text>
+  </div>
+</article>

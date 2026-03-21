@@ -1,0 +1,71 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Component
+import BlogEntry from "@/components/blog/BlogEntry.astro";
+import BlogSearch from "@/components/blog/BlogSearch.astro";
+// Sections
+import Subscribe from "@/components/blog/Subscribe.astro";
+// Content
+import { getCollection } from "astro:content";
+const allPostsUnsorted = await getCollection("posts");
+// Sort the posts in descending order by publication date (newest to oldest)
+const allPosts = allPostsUnsorted.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+);
+// Tags
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Blog</Kicker>
+        <div class="lg:col-span-7">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1 text-balance"
+          >
+            Our thoughts, takes, and hot air — all under one cozy roof
+          </Text>
+          <div class="mt-8"><BlogSearch /></div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-32">
+      <div class="flex flex-wrap justify-center gap-2">
+        {
+          tags.map((tag) => (
+            <a
+              title={tag}
+              aria-label={tag}
+              href={`/blog/tags/${tag}`}
+              class="text-xs capitalize text-base-500 hover:text-accent-600 duration-300"
+            >
+              {tag}
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-1">
+        {allPosts.map((post) => <BlogEntry post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+  <Subscribe />
+</BaseLayout>

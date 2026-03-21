@@ -1,0 +1,241 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "./BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import Check from "@/components/fundations/icons/Check.astro";
+// Content
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <!-- Modal -->
+  <div
+    id="modal"
+    style="display: none"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    class="fixed inset-0 z-50 overflow-hidden overflow-y-auto top-50"
+  >
+    <!-- Overlay -->
+    <div id="modal-overlay" class="fixed inset-0 bg-dots bg-burst-right"></div>
+    <!-- Panel -->
+    <Wrapper variant="standard" class="relative overflow-hidden">
+      <div
+        id="modal-content"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-2xl shadow-dimensional z-50"
+      >
+        <div class="relative grid grid-cols-1 gap-1 lg:grid-cols-2">
+          <div class="p-8 bg-dots">
+            <div
+              class="relative p-4 bg-white h-full flex flex-col justify-between"
+            >
+              <div>
+                <Image
+                  width={300}
+                  height={300}
+                  src={frontmatter.logo.url}
+                  alt={frontmatter.logo.alt}
+                  class="inline-block size-8"
+                />
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  id="modal-title"
+                  class="mt-4 base-900"
+                >
+                  Connect {frontmatter.integration} to Navy
+                </Text>
+                <Text variant="textXS" class="mt-2 text-base-600 text-balance">
+                  Stop guessing what your customers want — prioritize their
+                  needs and actually listen for once.
+                </Text>
+              </div>
+              <div class="flex flex-wrap mt-12 ml-auto gap-2">
+                <Button
+                  size="sm"
+                  variant="muted"
+                  type="button"
+                  id="close-modal"
+                  class="w-full"
+                >
+                  Cancel
+                </Button>
+                <Button size="sm" variant="accent" type="submit" class="w-full">
+                  Allow access
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8 bg-dots">
+            <div
+              class="p-4 bg-white h-full flex flex-col gap-12 justify-between"
+            >
+              <div>
+                <Text
+                  tag="p"
+                  variant="textBase"
+                  class=" text-left base-900"
+                >
+                  Navy would like to
+                </Text>
+                <ul
+                  role="list"
+                  class="mt-4 text-xs text-left list-disc pl-4 space-y-2 text-base-600"
+                >
+                  {
+                    frontmatter.permissions.map((permission) => (
+                      <li>{permission}</li>
+                    ))
+                  }
+                </ul>
+              </div>
+              <Text tag="p" variant="textXS" class="text-left text-base-500">
+                *We take your privacy seriously — no weird stuff. Check out our
+                <a
+                  class="text-base-500 hover:base-900"
+                  href="/infopages/privacy"
+                >
+                  Privacy Policy
+                </a>. By clicking "Allow access," you're saying, "Yeah, I trust
+                you" — and we won't mess that up.
+              </Text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </div>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Image
+          width={300}
+          height={300}
+          src={frontmatter.logo.url}
+          alt={frontmatter.logo.alt}
+          class="inline-block size-8"
+        />
+        <div class="lg:col-span-7 text-balance">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1 text-balance"
+          >
+            {frontmatter.integration}
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-700 mt-1">
+            {frontmatter.description}
+          </Text>
+          <Button size="sm" variant="accent" id="open-modal" class="mt-8 w-fit">
+            Plug it in
+          </Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="relative py-24">
+      <dl class="flex flex-col">
+        {
+          frontmatter.details.map((detail) => (
+            <div class="flex items-center justify-between p-4 gap-2 even:bg-base-50">
+              <dt>
+                <Text
+                  tag="h4"
+                  variant="textXS"
+                  class="uppercase  text-base-600"
+                >
+                  {detail.title}
+                </Text>
+              </dt>
+              <dd>
+                <Text tag="p" variant="textSM" class="text-base-900 capitalize">
+                  {detail.url ? (
+                    <a
+                      class="base-900 hover:text-base-500 duration-300 "
+                      href={detail.url}
+                    >
+                      {detail.value}
+                    </a>
+                  ) : (
+                    detail.value
+                  )}
+                </Text>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="max-w-xl mx-auto">
+        <Wrapper variant="prose" class="mt-12"><slot /></Wrapper>
+      </div>
+    </Wrapper>
+  </section>
+  <script type="module">
+    //
+    // Modal Component Script
+    //
+    // This script handles the functionality of a modal dialog with the following features:
+    // Opens/closes modal with animation
+    // Prevents background scrolling when modal is open
+    // Closes on outside click, escape key, or close button
+    // Handles scrollbar width to prevent layout shift
+    document.addEventListener("DOMContentLoaded", () => {
+      // Store all modal-related DOM elements in a single object for better organization
+      const modal = {
+        element: document.getElementById("modal"), // Main modal container
+        openButton: document.getElementById("open-modal"), // Button to open modal
+        closeButton: document.getElementById("close-modal"), // Button to close modal
+        content: document.getElementById("modal-content"), // Modal content container
+      };
+      // Toggles the modal visibility and handles body scroll
+      // @param {boolean} show - True to show modal, false to hide
+      const toggleModal = (show) => {
+        // Calculate scrollbar width to prevent layout shift when body scroll is disabled
+        const scrollbarWidth =
+          window.innerWidth - document.documentElement.clientWidth;
+        // Toggle body scroll and compensate for scrollbar removal
+        document.body.style.overflow = show ? "hidden" : "";
+        document.body.style.paddingRight = show ? `${scrollbarWidth}px` : "";
+        // Show/hide modal
+        modal.element.style.display = show ? "block" : "none";
+      };
+      // Event Listeners
+      // Opens modal when trigger button is clicked
+      modal.openButton.addEventListener("click", () => toggleModal(true));
+      // Closes modal when close button is clicked
+      modal.closeButton.addEventListener("click", () => toggleModal(false));
+      // Handles clicks on the modal backdrop
+      // Closes modal when clicking outside the modal content area
+      modal.element.addEventListener("click", (event) => {
+        // Check if click occurred outside modal content
+        // contains() checks if the clicked element is inside the modal content
+        if (!modal.content.contains(event.target)) {
+          toggleModal(false);
+        }
+      });
+      // Global keyboard event handler
+      // Closes modal when Escape key is pressed and modal is visible
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.element.style.display === "block") {
+          toggleModal(false);
+        }
+      });
+    });
+  </script>
+</BaseLayout>

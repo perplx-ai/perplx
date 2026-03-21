@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "type": "string"
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "testimonial": {
+      "type": "string"
+    },
+    "partnership": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "challengesAndSolutions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "about": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "logo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "customer",
+    "avatar",
+    "challengesAndSolutions",
+    "results",
+    "about",
+    "details",
+    "logo"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,111 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Logo from "@/components/assets/Logo.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+
+// Icons
+import GoogleColor from "@/components/fundations/icons/GoogleColor.astro";
+---
+
+<BaseLayout hideNav={true} hideFooter={true}>
+  <div class="flex h-screen">
+    <div class="flex items-center justify-center w-full p-8 bg-white lg:w-2/2">
+      <div class="w-full max-w-md py-24 lg:py-32">
+        <Kicker>Sign in</Kicker>
+
+        <Text tag="p" variant="textBase" class="mt-12 text-base-600">
+          Back again? Let’s see if your memory made it this time.
+        </Text>
+
+        <form class="mt-10 space-y-4">
+          <div class="w-full">
+            <div class="flex items-baseline justify-between mb-1">
+              <label for="email" class="text-sm font-medium text-base-500"
+                >Email Address</label
+              >
+            </div>
+            <div class="relative z-0 focus-within:z-10">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                class="block w-full px-4 py-2 text-xs leading-tight align-middle border border-transparent bg-base-50 transition duration-300 ease-in-out h-9 rounded-md text-base-500 focus:ring-1 placeholder-base-400 focus:ring-accent-500 focus:ring-2 focus:outline-none"
+                inputmode="email"
+              />
+            </div>
+          </div>
+          <div class="w-full">
+            <div class="flex items-baseline justify-between mb-1">
+              <label for="password" class="text-sm font-medium text-base-500"
+                >Password</label
+              >
+            </div>
+            <div class="relative z-0 focus-within:z-10">
+              <input
+                required
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                class="block w-full px-4 py-2 text-xs leading-tight align-middle border border-transparent bg-base-50 transition duration-300 ease-in-out h-9 rounded-md text-base-500 focus:ring-1 placeholder-base-400 focus:ring-accent-500 focus:ring-2 focus:outline-none"
+                aria-required="true"
+              />
+            </div>
+          </div>
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="login-remember"
+              name="login-remember"
+              class="rounded shadow border-base-300 text-accent-600 focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 size-4"
+            />
+            <label
+              for="login-remember"
+              class="ml-2 text-sm font-medium text-base-500"
+            >
+              Remember me for 30 days
+            </label>
+          </div>
+          <div class="flex flex-col gap-2">
+            <Button size="base" variant="accent" gap="sm" type="submit">
+              Sign in with email
+            </Button>
+            <Button size="base" variant="muted" gap="sm" type="submit">
+              <GoogleColor />
+              Sign in with Google
+            </Button>
+          </div>
+        </form>
+        <p class="mt-4 text-xs font-medium text-base-500">
+          Dont' have an account?
+          <a
+            href="/forms/sign-up"
+            class="font-medium text-accent-600 hover:text-base-500"
+          >
+            Sign up
+          </a>
+        </p>
+      </div>
+    </div>
+    <div
+      class="relative hidden overflow-hidden lg:block lg:w-2/2 bg-burst-left"
+    >
+      <Dots />
+      <div
+        class="absolute inset-0 flex flex-col justify-center items-center p-8"
+      >
+        <div>
+          <a href="/">
+            <span class="sr-only">Back to home</span>
+            <Logo class="h-100 text-white mask-b-from-0% mask-l-from-0%" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

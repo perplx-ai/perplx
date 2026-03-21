@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from "astro:content";
+import ChangeLogLayout from "@/layouts/ChangeLogLayout.astro";
+export async function getStaticPaths() {
+  const changelog = await getCollection("changelog");
+  const paths = changelog.map((page) => {
+    return {
+      params: { slug: page.id },
+      props: { page },
+      trailingSlash: false,
+    };
+  });
+  return paths;
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<ChangeLogLayout frontmatter={page.data}>
+  <Content />
+</ChangeLogLayout>

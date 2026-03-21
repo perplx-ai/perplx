@@ -1,0 +1,31 @@
+---
+// Foundations
+import "@/styles/global.css";
+import BaseHead from "@/components/fundations/head/BaseHead.astro";
+import Dots from "@/components/assets/Dots.astro";
+
+// Components
+import Footer from "@/components/global/Footer.astro";
+import Navigation from "@/components/global/Navigation.astro";
+// Hides nav and footer on selected screens by passing
+// the hideNav and hideFooter props
+// <BaseLayout hideNav={true} hideFooter={true}>
+const { hideNav = false, hideFooter = false } = Astro.props;
+---
+
+<html
+  lang="en"
+  class="scroll-smooth selection:bg-base-900 selection:text-white"
+>
+  <head>
+    <BaseHead />
+  </head>
+  <body class="relative flex flex-col bg-white min-h-svh">
+    {!hideNav && <Navigation />}
+
+    <main class="relative z-10 grow">
+      <div class="relative"><slot /></div>
+    </main>
+    {!hideFooter && <Footer />}
+  </body>
+</html>

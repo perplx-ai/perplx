@@ -1,0 +1,81 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Content
+import { getCollection } from "astro:content";
+const pageTitle = "Tag Index";
+// Get all posts
+const allPosts = await getCollection("posts");
+// Extract tags from all posts and count occurrences
+const tagCounts = allPosts.reduce((acc, post) => {
+  post.data.tags.forEach((tag) => {
+    acc[tag] = (acc[tag] || 0) + 1; // Count each tag per post
+  });
+  return acc;
+}, {});
+// Extract unique tags for display
+const tags = Object.keys(tagCounts);
+
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>tags</Kicker>
+        <div class="relative text-balance lg:col-span-7">
+          <Text
+            tag="h1"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1"
+          >
+            Explore all our tags
+          </Text>
+          <Text tag="p" variant="textBase" class="text-base-700">
+            Every post, neatly labeled so you don’t have to guess what’s behind
+            the click. It’s like email, but organized.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper class="py-24">
+      <div
+        class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1"
+      >
+        {
+          tags.map((tag) => (
+            <div class="relative flex flex-col p-4 text-center group bg-dots">
+              <a href={`/blog/tags/${tag}`} class="absolute inset-0 z-10" />
+              {/* Display the image next to the tag */}
+
+              <div class="flex flex-col items-center justify-center p-4 bg-white aspect-square">
+                <Text
+                  tag="h3"
+                  variant="textBase"
+                  class="flex flex-col capitalize  text-base-900 gap-4 font-display"
+                >
+                  {tag}
+                  <Text tag="span" variant="textXS" class="text-base-500">
+                    ({tagCounts[tag]})
+                  </Text>
+                </Text>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

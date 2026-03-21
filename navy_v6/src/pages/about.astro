@@ -1,0 +1,153 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import Team1 from "@/images/assets/team1.jpeg";
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Icons
+import ChevronLeft from "@/components/fundations/icons/ChevronLeft.astro";
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+// Components
+import TeamEntry1 from "@/components/team/TeamEntry1.astro";
+// Content
+import { getCollection } from "astro:content";
+const allAuthors = await getCollection("team");
+---
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Navy</Kicker>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-display text-base-900 lg:-mt-1 text-balance lg:col-span-7"
+        >
+          Not another startup page — just the part where we pretend we have our
+          act together
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="relative py-24">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Mission</Kicker>
+        <div class="relative text-balance lg:col-span-7">
+          <Text
+            tag="h2"
+            variant="displayMD"
+            class="font-display text-base-900 lg:-mt-1"
+          >
+            Helping you go from side project to “oh no, this is real” — without
+            the corporate drama
+          </Text>
+          <Image
+            src={Team1}
+            alt="Team1"
+            class="object-cover p-8 mt-24 size-full aspect-square bg-dots"
+          />
+          <Text tag="h2" variant="displaySM" class="mt-24 font-display">
+            <span class="text-base-900">
+              At Navy, we're unlocking the full potential of cloud
+              infrastructure by blending developer control with effortless
+              scalability.
+            </span>
+            <span class="text-base-600"> We call it Honest Deployment.</span>
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="relative py-24">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>Vision</Kicker>
+        <div
+          class="relative text-balance lg:col-span-7 columns-1 lg:columns-2 gap-8 space-y-6"
+        >
+          <Text tag="p" variant="textSM" class="text-base-700">
+            The ocean is vast, untamed, and constantly in motion—much like the
+            internet, and much like software. Just as ships evolved from
+            sailboats to nuclear-powered vessels, our software infrastructure is
+            undergoing its own transformation—from static deployments to
+            adaptive, intelligent systems.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-700">
+            At Navy, we envision a future where developers no longer wrestle
+            with scale, latency, or vendor lock-in. Instead, they command fleets
+            of services that self-optimize, self-heal, and scale on cue.
+            Infrastructure should feel invisible—present when needed, gone when
+            it’s not, and always working in your favor.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-700">
+            We’re building toward a world of autonomous deployment—where your
+            ideas ship faster than your doubts, and your stack doesn’t fight
+            back. In this new age of software, platforms don’t just host
+            applications—they empower them to grow, adapt, and thrive without
+            friction. This is not just cloud. This is command over it.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="relative py-24">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <div>
+          <Kicker>Our team</Kicker>
+        </div>
+        <div class="lg:col-span-7">
+          <Text
+            tag="h2"
+            variant="displaySM"
+            class="font-display text-base-900 lg:-mt-1"
+          >
+            The crew behind the curtain — designing, deploying, and occasionally
+            breaking things so you don’t have to
+          </Text>
+          <div class="flex justify-start mt-24 gap-2">
+            <Button
+              iconOnly
+              size="sm"
+              variant="muted"
+              aria-label="Previous slide"
+              id="keen-slider-previous"
+              ><ChevronLeft slot="icon" size="base" />
+            </Button>
+            <Button
+              iconOnly
+              size="sm"
+              variant="muted"
+              aria-label="Next slide"
+              id="keen-slider-next"
+            >
+              <ChevronRight slot="icon" size="sm" />
+            </Button>
+          </div>
+          <div id="keen-slider" class="mt-4 keen-slider">
+            {
+              allAuthors
+                .sort((a, b) => {
+                  const nameA = a.data.name.toLowerCase();
+                  const nameB = b.data.name.toLowerCase();
+                  return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+                })
+                .map((post) => <TeamEntry1 post={post} />)
+            }
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

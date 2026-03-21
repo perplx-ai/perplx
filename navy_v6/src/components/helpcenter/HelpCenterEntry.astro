@@ -1,0 +1,39 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+// Content
+const { title, intro, url } = {
+  url: "/helpcenter/" + Astro.props.post.id,
+  title: Astro.props.post.data.title,
+  intro: Astro.props.post.data.intro,
+};
+---
+
+<div class="p-8 bg-dots group">
+  <div
+    class="flex flex-col gap-24 lg:gap-32 justify-between h-full p-4 bg-white"
+  >
+    <div>
+      <Text tag="h3" variant="textXS" class="uppercase text-base-900">
+        {title}
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-1 text-base-600">{intro}</Text>
+    </div>
+    <Button
+      iconOnly
+      size="xs"
+      variant="muted"
+      href={url}
+      default
+      isLink={true}
+      title={`Read help article: ${title}`}
+      aria-label={`Read help article: ${title}`}
+      class="ml-auto group-hover:-rotate-45"
+    >
+      <ChevronRight slot="icon" size="sm" />
+    </Button>
+  </div>
+</div>

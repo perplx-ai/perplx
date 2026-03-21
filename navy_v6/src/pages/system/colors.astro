@@ -1,0 +1,99 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import Kicker from "@/components/assets/Kicker.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const colors = [
+  {
+    name: "Gradient",
+    shades: [
+      { name: "Burst Left", class: "bg-burst-left" },
+      { name: "Burst  Right", class: "bg-burst-right" },
+      { name: "Dots", class: "bg-dots" },
+
+    ],
+  },
+
+  {
+    name: "Accent",
+    shades: [
+      { name: "Accent 50", class: "bg-accent-50" },
+      { name: "Accent 100", class: "bg-accent-100" },
+      { name: "Accent 200", class: "bg-accent-200" },
+      { name: "Accent 300", class: "bg-accent-300" },
+      { name: "Accent 400", class: "bg-accent-400" },
+      { name: "Accent 500", class: "bg-accent-500" },
+      { name: "Accent 600", class: "bg-accent-600" },
+      { name: "Accent 700", class: "bg-accent-700" },
+      { name: "Accent 800", class: "bg-accent-800" },
+      { name: "Accent 900", class: "bg-accent-900" },
+      { name: "Accent 950", class: "bg-accent-950 outline outline-accent-900" },
+    ],
+  },
+  {
+    name: "Base",
+    shades: [
+      { name: "Base 50", class: "bg-base-50" },
+      { name: "Base 100", class: "bg-base-100" },
+      { name: "Base 200", class: "bg-base-200" },
+      { name: "Base 300", class: "bg-base-300" },
+      { name: "Base 400", class: "bg-base-400" },
+      { name: "Base 500", class: "bg-base-500" },
+      { name: "Base 600", class: "bg-base-600" },
+      { name: "Base 700", class: "bg-base-700" },
+      { name: "Base 800", class: "bg-base-800" },
+      { name: "Base 900", class: "bg-base-900" },
+      { name: "Base 950", class: "bg-base-950 outline outline-base-900" },
+    ],
+  },
+];
+---
+
+<BaseLayout>
+   <section class="relative overflow-hidden">
+    <Burst />
+    <Dots />
+    <SectionDivider />
+    <Wrapper variant="standard" class="relative pt-30 lg:pt-60 pb-28">
+      <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+        <Kicker>   Colors</Kicker>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-display text-base-900 lg:-mt-1 text-balance lg:col-span-7"
+        >
+         All colors
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+    
+      <div class="flex flex-col  gap-12">
+        {
+          colors.map((color) => (
+            <div class="flex flex-col gap-2">
+              <h3 class="text-xs font-semibold text-base-900 uppercase">
+                {color.name}
+              </h3>
+              <div class="mt-2 grid grid-cols-3 md:grid-colsä5 lg:grid-cols-11 gap-1 gap-y-8">
+                {color.shades.map((shade) => (
+                  <div class="flex flex-col gap-2">
+                    <div class={`size-full aspect-square  ${shade.class}`} />
+                    <span class="text-xs text-base-400">{shade.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

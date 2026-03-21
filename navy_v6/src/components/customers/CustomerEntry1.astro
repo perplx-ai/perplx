@@ -1,0 +1,61 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
+
+// Content
+const { customer, avatar, url, testimonial } = {
+  url: "/customers/" + Astro.props.post.id,
+  avatar: Astro.props.post.data.avatar.url,
+  customer: Astro.props.post.data.customer,
+  testimonial: Astro.props.post.data.testimonial,
+};
+---
+
+<article class="grid grid-cols-1 md:grid-cols-2 gap-1 group">
+  <Image
+    width="1000"
+    height="1000"
+    alt={customer}
+    src={avatar}
+    class="object-cover object-center aspect-8/10"
+  />
+  <div class="relative p-8 bg-dots">
+    <div class="p-8 bg-white flex flex-col gap-4 justify-between h-full">
+      <div class="flex items-center justify-between gap-2">
+        <Text class="font-medium text-base-900" tag="p" variant="textSM">
+          Read {customer}'s case study
+        </Text>
+        <Button
+          iconOnly
+          size="xs"
+          variant="muted"
+          href={url}
+          default
+          isLink={true}
+          title={customer}
+          aria-label={customer}
+          class="group-hover:-rotate-45"
+        >
+          <ArrowRight slot="icon" size="sm" />
+        </Button>
+      </div>
+      <div>
+        <Text tag="p" variant="textBase" class="mt-2 text-base-600">
+          {testimonial}
+        </Text>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="text-base-900 mt-8 pt-8 border-t border-base-100"
+        >
+          {customer}
+        </Text>
+      </div>
+    </div>
+  </div>
+</article>

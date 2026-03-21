@@ -1,0 +1,9 @@
+{
+  "name": "perplx",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix navy_v6",
+    "build": "npm run build --prefix navy_v6",
+    "preview": "npm run preview --prefix navy_v6"
+  }
+}

@@ -1,0 +1,55 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
+// Content
+const { integration, description, url, logo } = {
+  url: "/integrations/" + Astro.props.post.id,
+  integration: Astro.props.post.data.integration,
+  description: Astro.props.post.data.description,
+  logo: Astro.props.post.data.logo.url,
+};
+---
+
+<div class="relative flex p-8 bg-dots group bg-stripes group">
+  <a
+    class="absolute inset-0 z-10"
+    href={url}
+    title={`View details for ${integration}`}
+    aria-label={`View details for ${integration}`}></a>
+
+  <div class="flex flex-col h-full justify-between relative p-4 bg-white">
+    <div class="flex items-center justify-between gap-2">
+      <Image
+        src={logo}
+        alt={integration}
+        width={300}
+        height={300}
+        class="size-10"
+      />
+      <Button
+        iconOnly
+        size="xs"
+        variant="muted"
+        href={url}
+        default
+        isLink={true}
+        class="group-hover:-rotate-45"
+      >
+        <ChevronRight slot="icon" size="sm" />
+      </Button>
+    </div>
+    <div class="mt-24">
+      <Text tag="h3" variant="textSM" class=" font-medium text-white">
+        {integration}
+      </Text>
+      <Text tag="p" variant="textXS" class="mt-2 text-base-500">
+        {description}
+      </Text>
+    </div>
+  </div>
+</div>

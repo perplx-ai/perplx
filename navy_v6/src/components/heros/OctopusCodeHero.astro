@@ -1,0 +1,340 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const snippets = [
+  {
+    title: "Python",
+    code: `def climbStairs(self, n: int) -> int:
+    a, b = 1, 1
+    for _ in range(n - 1):
+        a, b = b, a + b
+    return b`,
+  },
+  {
+    title: "Python",
+    code: `def search(self, nums: List[int], t: int) -> bool:
+    lo, hi = 0, len(nums) - 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        if nums[mid] == t:
+            return True
+        elif nums[mid] < t:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return False`,
+  },
+  {
+    title: "Python",
+    code: `def numIslands(self, grid):
+    def dfs(i, j):
+        if not (0 <= i < m and 0 <= j < n) or grid[i][j] != "1":
+            return
+        grid[i][j] = "0"
+        for di, dj in (0, 1), (1, 0), (0, -1), (-1, 0):
+            dfs(i + di, j + dj)
+    m, n = len(grid), len(grid[0])
+    count = 0
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == "1":
+                dfs(i, j)
+                count += 1
+    return count`,
+  },
+  {
+    title: "Web",
+    code: `<todo-application>
+  #shadow-root
+  <nav class="toolbar">…</nav>
+  <todo-list>
+    <todo-task done>Review API</todo-task>
+    <todo-task>Ship v1</todo-task>
+  </todo-list>
+</todo-application>`,
+  },
+] as const;
+
+const personas = [
+  {
+    name: "Scholar",
+    blurb: "Careful study & craft",
+    ariaLabel: "Scholar terminal persona with monocle",
+  },
+  {
+    name: "Professional",
+    blurb: "Senior-grade focus",
+    ariaLabel: "Terminal persona with detective hat — professional",
+  },
+  {
+    name: "Playful",
+    blurb: "Learn by doing",
+    ariaLabel: "Terminal persona with propeller hat and lollipop — playful",
+  },
+] as const;
+---
+
+<section
+  class="relative overflow-hidden bg-linear-to-b from-base-50 to-base-100"
+  style="--perplexity-blue: #3b7a87;"
+>
+  <Wrapper variant="standard" class="relative py-16 md:py-24 lg:py-28">
+    <h1
+      class="mx-auto max-w-6xl text-center leading-[1.15] tracking-wide text-[#3b7a87]"
+      style="font-family: var(--font-pixel); font-size: clamp(22px, 5vw, 60px);"
+    >
+      WELCOME TO PERPLEX
+    </h1>
+
+    <!-- Octopus + legs: one SVG; cards sit in aligned grid so legs meet each card -->
+    <div class="mx-auto mt-10 max-w-6xl md:mt-12">
+      <svg
+        class="mx-auto block h-auto w-full max-w-6xl"
+        viewBox="0 0 800 240"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        preserveAspectRatio="xMidYMin meet"
+      >
+        <title>Terminal octopus</title>
+        <!-- Head: taller & wider -->
+        <rect
+          x="220"
+          y="16"
+          width="360"
+          height="88"
+          rx="6"
+          fill="var(--perplexity-blue)"></rect>
+        <!-- Centered prompt (eyes / face) -->
+        <text
+          x="400"
+          y="76"
+          fill="white"
+          text-anchor="middle"
+          class="font-mono font-bold"
+          style="font-size: 36px; letter-spacing: 0.02em;">&gt;_</text>
+        <!-- Four long legs from head bottom to column centers; hooks toward card tops -->
+        <path
+          d="M 250 104 V 198 L 100 232"
+          stroke="var(--perplexity-blue)"
+          stroke-width="5"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+          fill="none"></path>
+        <path
+          d="M 360 104 V 205 L 300 232"
+          stroke="var(--perplexity-blue)"
+          stroke-width="5"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+          fill="none"></path>
+        <path
+          d="M 440 104 V 205 L 500 232"
+          stroke="var(--perplexity-blue)"
+          stroke-width="5"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+          fill="none"></path>
+        <path
+          d="M 550 104 V 198 L 700 232"
+          stroke="var(--perplexity-blue)"
+          stroke-width="5"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+          fill="none"></path>
+      </svg>
+
+      <div
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-5 lg:-mt-3 lg:grid-cols-4 lg:gap-4"
+      >
+        {
+          snippets.map((snip) => (
+            <div class="flex min-h-0 flex-col">
+              <div
+                class="overflow-hidden rounded-b-lg rounded-t-none border border-x border-b border-base-200 border-t-4 border-t-[#3b7a87] bg-base-950 shadow-[var(--shadow-subtle)]"
+              >
+                <div class="flex items-center justify-between border-b border-base-800 px-3 py-2">
+                  <span class="font-mono text-xs text-base-400">{snip.title}</span>
+                  <span class="h-2 w-2 rounded-full bg-[#3b7a87]/80" aria-hidden="true" />
+                </div>
+                <pre
+                  class="max-h-52 overflow-x-auto overflow-y-auto p-3 text-left font-mono text-[10px] leading-relaxed text-base-100 sm:text-xs lg:max-h-60"
+                  tabindex="0"
+                ><code class="whitespace-pre text-[#a5d6ff]">{snip.code}</code></pre>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Copy under octopus + code -->
+    <div class="mx-auto mt-14 max-w-3xl text-center md:mt-20">
+      <Text
+        tag="p"
+        variant="displayMD"
+        class="font-display text-balance text-base-900"
+      >
+        Knowledge is enough -- The agent for everyone
+      </Text>
+      <Text
+        tag="p"
+        variant="textXL"
+        class="mt-4 text-balance text-base-600"
+      >
+        Senior Developers at the tip of your fingers
+      </Text>
+    </div>
+
+    <!-- Personas: no boxes, larger art only -->
+    <div
+      class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-10 md:mt-20 lg:gap-14"
+    >
+      {
+        personas.map((p, i) => (
+          <figure
+            class="flex flex-col items-center text-center"
+            aria-label={p.ariaLabel}
+          >
+            <div class="flex min-h-[14rem] w-full items-center justify-center sm:min-h-[16rem] md:min-h-[18rem]">
+              {i === 0 && (
+                <svg
+                  viewBox="0 0 160 120"
+                  class="h-52 w-full max-w-[14rem] md:h-64 md:max-w-[16rem]"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="20"
+                    y="52"
+                    width="120"
+                    height="44"
+                    rx="4"
+                    fill="#3b7a87"
+                  />
+                  <text
+                    x="80"
+                    y="82"
+                    fill="white"
+                    text-anchor="middle"
+                    class="font-mono"
+                    style="font-size: 18px;">&gt;_</text>
+                  <circle
+                    cx="102"
+                    cy="72"
+                    r="9"
+                    stroke="#3b7a87"
+                    stroke-width="2.5"
+                    fill="rgba(255,255,255,0.15)"
+                  />
+                  <path
+                    d="M111 72 L125 68"
+                    stroke="#3b7a87"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="125" cy="68" r="2" fill="#3b7a87" />
+                </svg>
+              )}
+              {i === 1 && (
+                <svg
+                  viewBox="0 0 160 120"
+                  class="h-52 w-full max-w-[14rem] md:h-64 md:max-w-[16rem]"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M36 48 L124 48 L114 28 L46 28 Z"
+                    fill="#3b7a87"
+                  />
+                  <ellipse cx="80" cy="50" rx="52" ry="6" fill="#2d5f6a" />
+                  <rect
+                    x="28"
+                    y="56"
+                    width="104"
+                    height="44"
+                    rx="4"
+                    fill="#3b7a87"
+                  />
+                  <text
+                    x="80"
+                    y="86"
+                    fill="white"
+                    text-anchor="middle"
+                    class="font-mono"
+                    style="font-size: 18px;">&gt;_</text>
+                </svg>
+              )}
+              {i === 2 && (
+                <svg
+                  viewBox="0 0 180 120"
+                  class="h-52 w-full max-w-[15rem] md:h-64 md:max-w-[17rem]"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M62 44 C62 26 98 26 98 44 L98 50 L62 50 Z"
+                    fill="#3b7a87"
+                  />
+                  <g stroke="#3b7a87" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="80" y1="28" x2="80" y2="16" />
+                    <line x1="72" y1="22" x2="88" y2="22" />
+                    <line x1="74" y1="16" x2="86" y2="28" />
+                    <line x1="74" y1="28" x2="86" y2="16" />
+                  </g>
+                  <rect
+                    x="40"
+                    y="58"
+                    width="100"
+                    height="44"
+                    rx="4"
+                    fill="#3b7a87"
+                  />
+                  <text
+                    x="90"
+                    y="88"
+                    fill="white"
+                    text-anchor="middle"
+                    class="font-mono"
+                    style="font-size: 18px;">&gt;_</text>
+                  <line
+                    x1="148"
+                    y1="92"
+                    x2="148"
+                    y2="112"
+                    stroke="#3b7a87"
+                    stroke-width="2.8"
+                  />
+                  <circle
+                    cx="148"
+                    cy="78"
+                    r="13"
+                    stroke="#3b7a87"
+                    stroke-width="2"
+                    fill="#e8f4f6"
+                  />
+                  <path
+                    d="M140 72 Q148 80 156 72"
+                    stroke="#3b7a87"
+                    stroke-width="1.3"
+                    fill="none"
+                  />
+                </svg>
+              )}
+            </div>
+            <figcaption class="mt-6">
+              <p class="font-display text-lg font-semibold text-base-900 md:text-xl">
+                {p.name}
+              </p>
+              <p class="mt-2 text-sm text-base-600 md:text-base">{p.blurb}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </Wrapper>
+</section>

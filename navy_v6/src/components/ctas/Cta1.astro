@@ -1,0 +1,38 @@
+---
+// Assets
+import Dots from "@/components/assets/Dots.astro";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+<section>
+  <Wrapper variant="standard" class="py-24">
+    <div class="relative p-8 py-24 text-center">
+      <Dots />
+      <div class="relative text-balance">
+        <Text
+          tag="h2"
+          variant="displayMD"
+          class="font-display text-base-900 text-balance"
+        >
+          Ready to launch?
+        </Text>
+        <Text tag="p" variant="textBase" class="mt-2 text-base-800">
+          Plant your flag on the Internet frontier. Get your app, database, or
+          static site live in minutes — no waiting, no whining, no nonsense.
+        </Text>
+        <Button
+          isLink={true}
+          gap="sm"
+          size="base"
+          variant="accent"
+          href="/pricing"
+          class="mx-auto mt-8 w-fit"
+        >
+          Get me in
+        </Button>
+      </div>
+    </div>
+  </Wrapper>
+</section>

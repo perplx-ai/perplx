@@ -1,0 +1,49 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import ArrowRight from "../fundations/icons/ArrowRight.astro";
+const { url, name, image, role } = {
+  url: "/team/" + Astro.props.post.id,
+  name: Astro.props.post.data.name,
+  role: Astro.props.post.data.role,
+  image: Astro.props.post.data.image.url,
+};
+---
+
+<article
+  class="relative flex flex-col justify-between w-full h-full p-8 bg-dots group"
+>
+  <Image
+    width="800"
+    height="800"
+    src={image}
+    alt={name}
+    class="object-cover w-full aspect-square"
+  />
+  <div class="flex flex-col h-full p-4 bg-white gap-24">
+    <Button
+      iconOnly
+      size="xxs"
+      href={url}
+      isLink={true}
+      variant="muted"
+      title={`View profile for ${name}`}
+      aria-label={`View profile for ${name}`}
+      class="ml-auto group-hover:-rotate-45"
+      ><ArrowRight slot="icon" size="xs" />
+    </Button>
+
+    <div>
+      <Text tag="h3" variant="textXS" class="uppercase text-base-900">
+        {name}
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-1 text-base-400">
+        {role}
+      </Text>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,50 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import ArrowRight from "@/components/fundations/icons/ArrowRight.astro";
+
+// Content
+const { page, description, pubDate, url } = {
+  url: "/changelog/" + Astro.props.post.id,
+  page: Astro.props.post.data.page,
+  description: Astro.props.post.data.description,
+  pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  }),
+};
+---
+
+<article class="relative overflow-hidden p-8 bg-dots group">
+  <div class="flex flex-col h-full p-4 bg-white gap-24">
+    <div class="flex items-center gap-2 justify-between">
+      <Text tag="p" variant="textXS" class="text-base-500">
+        {pubDate}
+      </Text>
+      <Button
+        iconOnly
+        size="xs"
+        variant="muted"
+        href={url}
+        default
+        isLink={true}
+        title={`Read help article: ${page}`}
+        aria-label={`Read help article: ${page}`}
+        class="ml-auto group-hover:-rotate-45"
+      >
+        <ArrowRight slot="icon" size="sm" />
+      </Button>
+    </div>
+    <div class="text-balance">
+      <Text tag="h3" variant="textXS" class="uppercase text-base-900">
+        {page}
+      </Text>
+      <Text tag="p" variant="textSM" class="mt-1 text-base-400">
+        {description}
+      </Text>
+    </div>
+  </div>
+</article>

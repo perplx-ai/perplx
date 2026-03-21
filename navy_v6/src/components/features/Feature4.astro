@@ -1,0 +1,76 @@
+---
+// Assets
+import Kicker from "@/components/assets/Kicker.astro";
+import Dots from "@/components/assets/Dots.astro";
+import Burst from "@/components/assets/Burst.astro";
+import SectionDivider from "@/components/assets/SectionDivider.astro";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const infrastructure = [
+  {
+    title: "25 ",
+    subtitle: "Data Centers",
+  },
+  {
+    title: "260+ ",
+    subtitle: "PoP Servers",
+  },
+  {
+    title: "99% ",
+    subtitle: "Uptime SLA",
+  },
+  {
+    title: "5x ",
+    subtitle: "Faster Deployments",
+  },
+  {
+    title: "1M+ ",
+    subtitle: "Requests per Second",
+  },
+  {
+    title: "100%",
+    subtitle: "Auto Healing Infrastructure",
+  },
+];
+---
+
+<section class="relative overflow-hidden">
+  <Burst />
+  <Dots />
+  <SectionDivider />
+  <SectionDivider flipped={true} />
+  <Wrapper variant="standard" class="relative py-24 lg:py-48">
+    <div class="items-start grid grid-cols-1 lg:grid-cols-8 gap-y-8">
+      <Kicker>insights</Kicker>
+      <div class="relative lg:col-span-7">
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="font-display text-base-900 text-balance lg:-mt-1"
+        >
+          A peek at the raw power driving your app.
+        </Text>
+        <div class="mt-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-1">
+          {
+            infrastructure.map((item) => (
+              <div class="flex flex-col items-center justify-center p-4 bg-white aspect-square hover:bg-burst gap-2 ">
+                <Text
+                  tag="h3"
+                  variant="displayXL"
+                  class="font-mono text-base-900"
+                >
+                  {item.title}
+                </Text>
+                <Text tag="p" variant="textBase" class="mt-2 text-base-500">
+                  {item.subtitle}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
