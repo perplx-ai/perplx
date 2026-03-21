@@ -43,7 +43,7 @@ const features = [
         <Text
           tag="h2"
           variant="displaySM"
-          class="font-display text-base-900 lg:-mt-1"
+          class="font-display text-base-900 leading-snug lg:-mt-1"
         >
           Does the research for you—live docs and package context, not guesswork
           from stale training data—then explains every suggestion before you hit
@@ -52,21 +52,21 @@ const features = [
         <Button
           size="xs"
           variant="muted"
-          class="mt-8 w-fit"
+          class="mt-6 w-fit"
           isLink={true}
           href="/pricing"
         >
           View plans
         </Button>
 
-        <div class="mt-16 grid grid-cols-1 gap-1 md:grid-cols-2">
+        <div class="mt-8 grid grid-cols-1 gap-px border border-base-200 bg-base-200 md:mt-9 md:grid-cols-2">
           {
             features.map((item) => (
-              <div class="flex flex-col justify-between gap-2 bg-white p-4 md:min-h-[12rem] lg:aspect-square lg:min-h-0">
+              <div class="flex flex-col gap-2 bg-white p-5 sm:p-6">
                 <Text tag="h3" variant="textBase" class="text-base-900">
                   {item.title}
                 </Text>
-                <Text tag="p" variant="textBase" class="mt-2 text-base-500">
+                <Text tag="p" variant="textBase" class="text-base-500 leading-relaxed">
                   {item.subtitle}
                 </Text>
               </div>
@@ -75,7 +75,7 @@ const features = [
         </div>
 
         <aside
-          class="mt-12 border border-base-200 bg-base-50 p-6 md:p-8"
+          class="mt-8 border border-base-200 bg-base-50 p-6 md:mt-9 md:p-7"
           aria-labelledby="compare-agents-heading"
         >
           <Text
@@ -89,7 +89,7 @@ const features = [
           <Text tag="p" variant="textBase" class="mt-4 text-base-600">
             Many coding agents lean heavily on what the model already “knows”
             from training—fast, but vulnerable to stale APIs and silent
-            assumptions. Perplex{" "}
+            assumptions. Perplx{" "}
             <strong class="font-semibold text-base-800"
               >does the research for you</strong
             >

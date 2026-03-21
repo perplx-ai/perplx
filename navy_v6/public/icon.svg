@@ -1,0 +1,43 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="28 56 104 70"
+  width="64"
+  height="64"
+  fill="none"
+  shape-rendering="crispEdges"
+  role="img"
+  aria-labelledby="favicon-octopus-title"
+>
+  <title id="favicon-octopus-title">Perplx</title>
+  <!-- Terminal only: same rect as Professional persona (no hat / brim) -->
+  <rect x="28" y="56" width="104" height="44" fill="#3b7a87" />
+  <!-- Eyes: &gt; and _ as paths (matches persona tspans at 74/86 and 86/82) -->
+  <path
+    d="M 69 80 L 76 86 L 69 92"
+    stroke="#ffffff"
+    stroke-width="2.5"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <line
+    x1="80"
+    y1="82"
+    x2="93"
+    y2="82"
+    stroke="#ffffff"
+    stroke-width="2.5"
+    stroke-linecap="square"
+  />
+  <!-- Legs: same stepped paths as Professional -->
+  <g
+    stroke="#3b7a87"
+    stroke-width="4"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  >
+    <path d="M 40 100 V 108 H 32 V 102 H 44 V 116 H 30 V 126" />
+    <path d="M 58 100 V 112 H 52 V 126" />
+    <path d="M 102 100 V 126" />
+    <path d="M 120 100 V 108 H 128 V 102 H 116 V 116 H 130 V 126" />
+  </g>
+</svg>
