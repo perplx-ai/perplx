@@ -16,24 +16,45 @@ export interface MessageRenderer {
 
 export class ExtensionRunner {
   constructor(..._args: any[]) {}
-  hasHandlers(_event: string): boolean { return false; }
-  async emitBeforeProviderRequest(_payload: any): Promise<any> { return undefined; }
+  bindCore(..._args: any[]): void {}
+  bindCommandContext(..._args: any[]): void {}
+  setUIContext(..._args: any[]): void {}
+  onError(_listener: any): () => void { return () => {}; }
+  emitError(_event: any): void {}
+  hasHandlers(_eventType: string): boolean { return false; }
+  getExtensionPaths(): string[] { return []; }
+  getAllRegisteredTools(): any[] { return []; }
+  getToolDefinition(_name: string): any { return undefined; }
+  getFlags(): Map<string, any> { return new Map(); }
+  getFlagValues(): Map<string, any> { return new Map(); }
+  setFlagValue(_name: string, _value: any): void {}
+  getShortcuts(_keybindings: any): Map<string, any> { return new Map(); }
+  getShortcutDiagnostics(): any[] { return []; }
+  getRegisteredCommands(_reserved?: Set<string>): any[] { return []; }
+  getCommandDiagnostics(): any[] { return []; }
+  getRegisteredCommandsWithPaths(): any[] { return []; }
+  getCommand(_name: string): any { return undefined; }
+  getMessageRenderer(_customType: string): MessageRenderer | undefined { return undefined; }
+  createContext(): any { return {}; }
+  createCommandContext(): any { return {}; }
+  shutdown(): void {}
+  async emit(_event: any): Promise<any> { return undefined; }
+  async emitToolCall(_event: any): Promise<any> { return undefined; }
+  async emitToolResult(_event: any): Promise<any> { return undefined; }
   async emitUserBash(_event: any): Promise<any> { return undefined; }
-  async emitSessionStart(_event: any): Promise<void> {}
-  async emitSessionShutdown(_event: any): Promise<void> {}
-  async emitSessionBeforeCompact(_event: any): Promise<any> { return undefined; }
-  async emitSessionBeforeFork(_event: any): Promise<any> { return undefined; }
-  async emitSessionBeforeSwitch(_event: any): Promise<any> { return undefined; }
-  async emitSessionBeforeTree(_event: any): Promise<any> { return undefined; }
-  async emitTurnStart(_event: any): Promise<void> {}
-  async emitTurnEnd(_event: any): Promise<void> {}
+  async emitContext(messages: any[]): Promise<any[]> { return messages; }
+  async emitBeforeProviderRequest(payload: any): Promise<any> { return payload; }
+  async emitBeforeAgentStart(..._args: any[]): Promise<any> { return undefined; }
+  async emitResourcesDiscover(..._args: any[]): Promise<any> { return { skillPaths: [], promptPaths: [], themePaths: [] }; }
+  async emitInput(text: string, images: any, _source: any): Promise<any> { return { action: 'continue', text, images }; }
   dispose(): void {}
 }
+
 export type ExtensionContext = any;
 export type ExtensionUIContext = any;
 export type ExtensionUIDialogOptions = any;
 export type ExtensionWidgetOptions = any;
-export type ExtensionErrorListener = any;
+export type ExtensionErrorListener = (error: any) => void;
 export type ExtensionCommandContextActions = any;
 export type InputSource = any;
 export type ShutdownHandler = () => void | Promise<void>;
