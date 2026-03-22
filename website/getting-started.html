@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Getting Started — perplx</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/docs.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-brand">
+        <img src="logo.png" alt="perplx" draggable="false" />
+        <span>perplx</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/themackabu/perplx">GitHub</a>
+        <a href="getting-started.html" class="nav-active">Docs</a>
+      </div>
+    </nav>
+
+    <div class="docs-layout">
+      <aside class="docs-sidebar">
+        <div class="docs-nav-section">
+          <h3>Getting Started</h3>
+          <a href="#installation" class="docs-nav-link">Installation</a>
+          <a href="#authentication" class="docs-nav-link">Authentication</a>
+          <a href="#first-run" class="docs-nav-link">First Run</a>
+        </div>
+        <div class="docs-nav-section">
+          <h3>Usage</h3>
+          <a href="#interactive-mode" class="docs-nav-link">Interactive Mode</a>
+          <a href="#print-mode" class="docs-nav-link">Print Mode</a>
+          <a href="#file-input" class="docs-nav-link">File Input</a>
+          <a href="#sessions" class="docs-nav-link">Sessions</a>
+        </div>
+        <div class="docs-nav-section">
+          <h3>Models</h3>
+          <a href="#models" class="docs-nav-link">Available Models</a>
+        </div>
+        <div class="docs-nav-section">
+          <h3>Reference</h3>
+          <a href="#cli-flags" class="docs-nav-link">CLI Flags</a>
+          <a href="#configuration" class="docs-nav-link">Configuration</a>
+        </div>
+      </aside>
+
+      <main class="docs-content">
+        <h1>Getting Started</h1>
+        <p class="docs-intro">
+          perplx is a terminal-native AI coding agent powered by the Perplexity Agent API. It runs entirely in your terminal and integrates into your
+          existing workflow.
+        </p>
+
+        <section id="installation">
+          <h2>Installation</h2>
+          <p>Clone the repository and build the binary using <a href="https://bun.sh">Bun</a>:</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>git clone https://github.com/themackabu/perplx.git
+cd perplx/tool
+pnpm install
+bun build src/cli.ts --target node --compile --outfile ~/.local/bin/perplx</code></pre>
+          </div>
+          <p>
+            This compiles the agent into a standalone binary at <code>~/.local/bin/perplx</code>. Make sure <code>~/.local/bin</code> is in your
+            <code>PATH</code>.
+          </p>
+          <p>For development, you can run directly without compiling:</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>cd perplx/tool
+pnpm dev</code></pre>
+          </div>
+        </section>
+
+        <section id="authentication">
+          <h2>Authentication</h2>
+          <p>
+            perplx uses the Perplexity API. On first launch, you'll be guided through authentication via OAuth — you'll need a
+            <a href="https://console.perplexity.ai">Perplexity API key</a>.
+          </p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>$ perplx
+# On first run, you'll be prompted:
+#   Go to https://console.perplexity.ai
+#   Navigate to the API Keys tab and generate a new key.
+#   Paste your Perplexity API key: pplx-xxxxxxxx...</code></pre>
+          </div>
+          <p>Your credentials are stored locally at <code>~/.perplx/agent/auth.json</code>.</p>
+        </section>
+
+        <section id="first-run">
+          <h2>First Run</h2>
+          <p>Navigate to any project directory and launch the agent:</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>cd ~/my-project
+perplx</code></pre>
+          </div>
+          <p>
+            You'll enter interactive mode where you can ask the agent to read, write, refactor, and debug code. The agent has access to tools for file
+            operations, shell commands, and web search.
+          </p>
+        </section>
+
+        <section id="interactive-mode">
+          <h2>Interactive Mode</h2>
+          <p>
+            The default mode. Launch <code>perplx</code> with no flags to enter a persistent session where you can have a back-and-forth conversation
+            with the agent.
+          </p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>$ perplx
+> add error handling to the database module
+> now write tests for it</code></pre>
+          </div>
+          <p>Use <kbd>Ctrl+P</kbd> to cycle between available models during a session.</p>
+        </section>
+
+        <section id="print-mode">
+          <h2>Print Mode</h2>
+          <p>
+            For scripting and pipelines. Pass <code>--print</code> (or <code>-p</code>) to run non-interactively — the agent processes your prompt and
+            exits.
+          </p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>perplx -p "explain this function" @src/utils.ts</code></pre>
+          </div>
+          <p>You can also pipe stdin into perplx:</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>cat error.log | perplx "what went wrong?"</code></pre>
+          </div>
+        </section>
+
+        <section id="file-input">
+          <h2>File Input</h2>
+          <p>Prefix file paths with <code>@</code> to attach them as context to your prompt. This works in both interactive and print mode.</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code>perplx @src/auth.ts @src/middleware.ts "refactor these to use a shared session"</code></pre>
+          </div>
+          <p>Image files are supported too — the agent can analyze screenshots, diagrams, and other visuals.</p>
+        </section>
+
+        <section id="sessions">
+          <h2>Sessions</h2>
+          <p>Every conversation is automatically saved. You can continue your most recent session or browse and resume any previous one.</p>
+          <div class="code-block">
+            <div class="code-header">terminal</div>
+            <pre><code># Continue the last session
+perplx --continue
+
+# Browse and select a session to resume
+perplx --resume</code></pre>
+          </div>
+          <p>Sessions are stored locally in <code>~/.perplx/agent/sessions/</code>.</p>
+          <p>
+            You can also share sessions publicly via <a href="https://share.perplx.net">share.perplx.net</a>. Shared sessions are rendered with full
+            markdown and syntax highlighting.
+          </p>
+        </section>
+
+        <section id="models">
+          <h2>Available Models</h2>
+          <p>perplx ships with three model tiers, all served through the Perplexity Agent API:</p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>ID</th>
+                <th>Anthropic Model</th>
+                <th>OpenAI Model</th>
+                <th>Context</th>
+                <th>Reasoning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Perplexity Rush</td>
+                <td><code>rush</code></td>
+                <td>Claude Haiku 4.5</td>
+                <td>GPT-5.4 mini</td>
+                <td>200k</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Perplexity Fast</td>
+                <td><code>fast</code></td>
+                <td>Claude Sonnet 4.6</td>
+                <td>GPT-5.2</td>
+                <td>200k</td>
+                <td>✓</td>
+              </tr>
+              <tr>
+                <td>Perplexity Smart</td>
+                <td><code>smart</code></td>
+                <td>Claude Opus 4.6</td>
+                <td>GPT-5.4</td>
+                <td>200k</td>
+                <td>✓</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>The default model is <code>smart</code>. Use <kbd>Ctrl+P</kbd> in interactive mode to switch between models on the fly.</p>
+        </section>
+
+        <section id="cli-flags">
+          <h2>CLI Flags</h2>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Flag</th>
+                <th>Short</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--print</code></td>
+                <td><code>-p</code></td>
+                <td>Non-interactive mode: process prompt and exit</td>
+              </tr>
+              <tr>
+                <td><code>--continue</code></td>
+                <td><code>-c</code></td>
+                <td>Continue previous session</td>
+              </tr>
+              <tr>
+                <td><code>--resume</code></td>
+                <td><code>-r</code></td>
+                <td>Select a session to resume</td>
+              </tr>
+              <tr>
+                <td><code>--extension &lt;path&gt;</code></td>
+                <td><code>-e</code></td>
+                <td>Load an extension file (repeatable)</td>
+              </tr>
+              <tr>
+                <td><code>--no-extensions</code></td>
+                <td><code>-ne</code></td>
+                <td>Disable extension discovery</td>
+              </tr>
+              <tr>
+                <td><code>--skill &lt;path&gt;</code></td>
+                <td></td>
+                <td>Load a skill file or directory (repeatable)</td>
+              </tr>
+              <tr>
+                <td><code>--no-skills</code></td>
+                <td><code>-ns</code></td>
+                <td>Disable skill discovery</td>
+              </tr>
+              <tr>
+                <td><code>--prompt-template &lt;path&gt;</code></td>
+                <td></td>
+                <td>Load a prompt template (repeatable)</td>
+              </tr>
+              <tr>
+                <td><code>--no-prompt-templates</code></td>
+                <td><code>-np</code></td>
+                <td>Disable prompt template discovery</td>
+              </tr>
+              <tr>
+                <td><code>--theme &lt;path&gt;</code></td>
+                <td></td>
+                <td>Load a theme file or directory (repeatable)</td>
+              </tr>
+              <tr>
+                <td><code>--no-themes</code></td>
+                <td></td>
+                <td>Disable theme discovery</td>
+              </tr>
+              <tr>
+                <td><code>--verbose</code></td>
+                <td></td>
+                <td>Force verbose startup output</td>
+              </tr>
+              <tr>
+                <td><code>--help</code></td>
+                <td><code>-h</code></td>
+                <td>Show help</td>
+              </tr>
+              <tr>
+                <td><code>--version</code></td>
+                <td><code>-v</code></td>
+                <td>Show version number</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="configuration">
+          <h2>Configuration</h2>
+          <p>All configuration lives under <code>~/.perplx/</code>:</p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>~/.perplx/agent/auth.json</code></td>
+                <td>API credentials</td>
+              </tr>
+              <tr>
+                <td><code>~/.perplx/agent/settings.json</code></td>
+                <td>User preferences (theme, default model, etc.)</td>
+              </tr>
+              <tr>
+                <td><code>~/.perplx/agent/sessions/</code></td>
+                <td>Saved conversation sessions</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <span class="footer-left">&copy; 2025 perplx</span>
+      <div class="footer-links">
+        <a href="https://github.com/themackabu/perplx">GitHub</a>
+        <a href="https://github.com/themackabu/perplx/blob/main/LICENSE.md">License</a>
+      </div>
+    </footer>
+  </body>
+</html>

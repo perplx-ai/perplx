@@ -154,16 +154,6 @@ export class FooterComponent implements Component {
     const pwdLine = truncateToWidth(theme.fg('dim', pwd), width, theme.fg('dim', '...'));
     const lines = [pwdLine, dimStatsLeft + dimRemainder];
 
-    const extensionStatuses = this.footerData.getExtensionStatuses();
-    if (extensionStatuses.size > 0) {
-      const sortedStatuses = Array.from(extensionStatuses.entries())
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([, text]) => sanitizeStatusText(text));
-      const statusLine = sortedStatuses.join(' ');
-
-      lines.push(truncateToWidth(statusLine, width, theme.fg('dim', '...')));
-    }
-
     return lines;
   }
 }

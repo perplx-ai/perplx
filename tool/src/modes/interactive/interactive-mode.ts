@@ -135,7 +135,7 @@ export class InteractiveMode {
   private onInputCallback?: (text: string) => void;
   private loadingAnimation: Loader | undefined = undefined;
   private pendingWorkingMessage: string | undefined = undefined;
-  private readonly defaultWorkingMessage = 'Working...';
+  private readonly defaultWorkingMessage = 'Thinking...';
 
   private lastSigintTime = 0;
   private lastEscapeTime = 0;
@@ -368,8 +368,6 @@ export class InteractiveMode {
 
   async run(): Promise<void> {
     await this.init();
-
-
 
     this.checkTmuxKeyboardSetup().then(warning => {
       if (warning) {

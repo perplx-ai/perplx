@@ -1,0 +1,9 @@
+name = "perplx_website"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "."
+
+[[routes]]
+pattern = "perplx.net"
+custom_domain = true

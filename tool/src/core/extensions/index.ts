@@ -47,6 +47,15 @@ export type {
   TurnStartEvent,
 } from './types.js';
 
-export function wrapRegisteredTools(tools: any[]): any[] {
-  return tools;
+export function wrapRegisteredTools(tools: any[], _runner?: any): any[] {
+  return tools.map((t: any) => {
+    const def = t.definition ?? t;
+    return {
+      name: def.name,
+      label: def.label,
+      description: def.description,
+      parameters: def.parameters,
+      execute: def.execute,
+    };
+  });
 }
