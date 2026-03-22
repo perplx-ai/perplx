@@ -1,0 +1,14 @@
+diff --git a/dist/agent-loop.js b/dist/agent-loop.js
+index 4816333ee28586ea3fcaa07806769371bb7df14f..d9145f5d297ad032df07cd6272431fc97e12a416 100644
+--- a/dist/agent-loop.js
++++ b/dist/agent-loop.js
+@@ -188,6 +188,9 @@ async function streamAssistantResponse(context, config, signal, emit, streamFn)
+                     });
+                 }
+                 break;
++            case "working_message":
++                await emit({ type: "working_message", message: event.message });
++                break;
+             case "done":
+             case "error": {
+                 const finalMessage = await response.result();

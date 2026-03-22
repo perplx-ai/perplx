@@ -1,0 +1,16 @@
+import type { Component } from '@mariozechner/pi-tui';
+import { theme } from '../theme/theme.js';
+
+export class DynamicBorder implements Component {
+  private color: (str: string) => string;
+
+  constructor(color: (str: string) => string = str => theme.fg('border', str)) {
+    this.color = color;
+  }
+
+  invalidate(): void {}
+
+  render(width: number): string[] {
+    return [this.color('─'.repeat(Math.max(1, width)))];
+  }
+}

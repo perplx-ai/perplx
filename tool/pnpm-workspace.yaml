@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - esbuild
+  - koffi
+  - protobufjs
+
+patchedDependencies:
+  '@mariozechner/pi-agent-core': patches/@mariozechner__pi-agent-core.patch
+  '@mariozechner/pi-ai': patches/@mariozechner__pi-ai.patch

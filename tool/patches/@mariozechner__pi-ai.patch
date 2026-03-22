@@ -1,0 +1,65 @@
+diff --git a/dist/providers/openai-responses-shared.js b/dist/providers/openai-responses-shared.js
+index ca1ae3af57fee5689781e48dcbc9364d7c45ba05..f55e6ffd3e457528709b48b4e01c82f612f05eaa 100644
+--- a/dist/providers/openai-responses-shared.js
++++ b/dist/providers/openai-responses-shared.js
+@@ -256,6 +256,9 @@ export async function processResponsesStream(openaiStream, output, stream, model
+         else if (event.type === "response.reasoning_summary_text.delta") {
+             if (currentItem?.type === "reasoning" && currentBlock?.type === "thinking") {
+                 currentItem.summary = currentItem.summary || [];
++                if (currentItem.summary.length === 0) {
++                    currentItem.summary.push({ type: "summary_text", text: "" });
++                }
+                 const lastPart = currentItem.summary[currentItem.summary.length - 1];
+                 if (lastPart) {
+                     currentBlock.thinking += event.delta;
+@@ -297,7 +300,8 @@ export async function processResponsesStream(openaiStream, output, stream, model
+         else if (event.type === "response.output_text.delta") {
+             if (currentItem?.type === "message" && currentBlock?.type === "text") {
+                 if (!currentItem.content || currentItem.content.length === 0) {
+-                    continue;
++                    currentItem.content = currentItem.content || [];
++                    currentItem.content.push({ type: "output_text", text: "" });
+                 }
+                 const lastPart = currentItem.content[currentItem.content.length - 1];
+                 if (lastPart?.type === "output_text") {
+@@ -414,6 +418,13 @@ export async function processResponsesStream(openaiStream, output, stream, model
+                 output.stopReason = "toolUse";
+             }
+         }
++        else if (event.type === "response.reasoning.search_queries") {
++            stream.push({ type: "working_message", message: "Searching the web..." });
++        }
++        else if (event.type === "response.reasoning.search_results") {
++            const count = event.results?.length || 0;
++            stream.push({ type: "working_message", message: `Found ${count} result${count !== 1 ? 's' : ''}` });
++        }
+         else if (event.type === "error") {
+             throw new Error(`Error Code ${event.code}: ${event.message}` || "Unknown error");
+         }
+diff --git a/dist/providers/openai-responses.js b/dist/providers/openai-responses.js
+index 3bf172acee9286eb71fb40c067b303ea96563486..46e53bbbb0cd0fecf85b2a43377e45f6a5603914 100644
+--- a/dist/providers/openai-responses.js
++++ b/dist/providers/openai-responses.js
+@@ -123,12 +123,20 @@ function createClient(model, context, apiKey, optionsHeaders) {
+     if (optionsHeaders) {
+         Object.assign(headers, optionsHeaders);
+     }
+-    return new OpenAI({
++    const clientOptions = {
+         apiKey,
+         baseURL: model.baseUrl,
+         dangerouslyAllowBrowser: true,
+         defaultHeaders: headers,
+-    });
++    };
++    if (model.baseUrl && model.baseUrl.includes('perplexity.ai')) {
++        const origFetch = globalThis.fetch;
++        clientOptions.fetch = (url, init) => {
++            const rewritten = typeof url === 'string' ? url.replace(/\/responses$/, '/agent') : url;
++            return origFetch(rewritten, init);
++        };
++    }
++    return new OpenAI(clientOptions);
+ }
+ function buildParams(model, context, options) {
+     const messages = convertResponsesMessages(model, context, OPENAI_TOOL_CALL_PROVIDERS);

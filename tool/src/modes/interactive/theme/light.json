@@ -1,0 +1,83 @@
+{
+  "name": "light",
+  "vars": {
+    "teal": "#0E8A9A",
+    "blue": "#2B7BD5",
+    "green": "#2E7D32",
+    "red": "#C62828",
+    "yellow": "#F57F17",
+    "mediumGray": "#5C6B7A",
+    "dimGray": "#7A8899",
+    "lightGray": "#B0BEC5",
+    "selectedBg": "#D4E8F0",
+    "userMsgBg": "#EDF4F8",
+    "toolPendingBg": "#E8EFF5",
+    "toolSuccessBg": "#E8F5E9",
+    "toolErrorBg": "#FFEBEE",
+    "customMsgBg": "#E8EAF6"
+  },
+  "colors": {
+    "accent": "teal",
+    "border": "blue",
+    "borderAccent": "teal",
+    "borderMuted": "lightGray",
+    "success": "green",
+    "error": "red",
+    "warning": "yellow",
+    "muted": "mediumGray",
+    "dim": "dimGray",
+    "text": "",
+    "thinkingText": "mediumGray",
+
+    "selectedBg": "selectedBg",
+    "userMessageBg": "userMsgBg",
+    "userMessageText": "",
+    "customMessageBg": "customMsgBg",
+    "customMessageText": "",
+    "customMessageLabel": "#5C6BC0",
+    "toolPendingBg": "toolPendingBg",
+    "toolSuccessBg": "toolSuccessBg",
+    "toolErrorBg": "toolErrorBg",
+    "toolTitle": "",
+    "toolOutput": "mediumGray",
+
+    "mdHeading": "#F57F17",
+    "mdLink": "blue",
+    "mdLinkUrl": "dimGray",
+    "mdCode": "teal",
+    "mdCodeBlock": "green",
+    "mdCodeBlockBorder": "lightGray",
+    "mdQuote": "mediumGray",
+    "mdQuoteBorder": "lightGray",
+    "mdHr": "lightGray",
+    "mdListBullet": "teal",
+
+    "toolDiffAdded": "green",
+    "toolDiffRemoved": "red",
+    "toolDiffContext": "mediumGray",
+
+    "syntaxComment": "#546E7A",
+    "syntaxKeyword": "#1565C0",
+    "syntaxFunction": "#6A1B9A",
+    "syntaxVariable": "#0277BD",
+    "syntaxString": "#2E7D32",
+    "syntaxNumber": "#E65100",
+    "syntaxType": "#0E8A9A",
+    "syntaxOperator": "#37474F",
+    "syntaxPunctuation": "#37474F",
+
+    "thinkingOff": "lightGray",
+    "thinkingMinimal": "#7A8899",
+    "thinkingLow": "blue",
+    "thinkingMedium": "teal",
+    "thinkingHigh": "#00897B",
+    "thinkingXhigh": "#00695C",
+
+    "bashMode": "green"
+  },
+  "export": {
+    "pageBg": "#F5F7FA",
+    "cardBg": "#FFFFFF",
+    "infoBg": "#FFF8E1"
+  }
+}

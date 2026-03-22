@@ -1,0 +1,57 @@
+{
+  "name": "perplexity-code",
+  "type": "module",
+  "scripts": {
+    "clean": "shx rm -rf dist perplx",
+    "dev": "bun --watch src/cli.ts",
+    "start": "bun src/cli.ts",
+    "build": "bun build src/cli.ts --target node --compile --outfile ~/.local/bin/perplx"
+  },
+  "dependencies": {
+    "@mariozechner/jiti": "^2.6.2",
+    "@mariozechner/pi-agent-core": "^0.61.1",
+    "@mariozechner/pi-ai": "^0.61.1",
+    "@mariozechner/pi-tui": "^0.61.1",
+    "@silvia-odwyer/photon-node": "^0.3.4",
+    "@sinclair/typebox": "^0.34.48",
+    "ajv": "^8.18.0",
+    "chalk": "^5.5.0",
+    "cli-highlight": "^2.1.11",
+    "diff": "^8.0.2",
+    "extract-zip": "^2.0.1",
+    "file-type": "^21.1.1",
+    "glob": "^13.0.1",
+    "hosted-git-info": "^9.0.2",
+    "ignore": "^7.0.5",
+    "marked": "^15.0.12",
+    "minimatch": "^10.2.3",
+    "proper-lockfile": "^4.1.2",
+    "strip-ansi": "^7.1.0",
+    "undici": "^7.19.1",
+    "yaml": "^2.8.2"
+  },
+  "overrides": {
+    "rimraf": "6.1.2",
+    "gaxios": {
+      "rimraf": "6.1.2"
+    }
+  },
+  "optionalDependencies": {
+    "@mariozechner/clipboard": "^0.3.2"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/hosted-git-info": "^3.0.5",
+    "@types/ms": "^2.1.0",
+    "@types/node": "^24.3.0",
+    "@types/proper-lockfile": "^4.1.4",
+    "shx": "^0.4.0",
+    "typescript": "^5.7.3"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themackabu/perplx.git"
+  }
+}
