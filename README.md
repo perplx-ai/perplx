@@ -19,7 +19,7 @@
 Requires [Bun](https://bun.sh) and [pnpm](https://pnpm.io).
 
 ```bash
-git clone https://github.com/themackabu/perplx.git
+git clone https://github.com/perplx-ai/perplx.git
 cd perplx/tool
 pnpm install
 bun build src/cli.ts --target node --compile --outfile ~/.local/bin/perplx
