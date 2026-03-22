@@ -24,6 +24,7 @@ export const BUILTIN_SLASH_COMMANDS: ReadonlyArray<BuiltinSlashCommand> = [
   { name: 'hotkeys', description: 'Show all keyboard shortcuts' },
   { name: 'fork', description: 'Create a new fork from a previous message' },
   { name: 'tree', description: 'Navigate session tree (switch branches)' },
+  { name: 'logout', description: 'Log out of Perplexity' },
   { name: 'new', description: 'Start a new session' },
   { name: 'compact', description: 'Manually compact the session context' },
   { name: 'resume', description: 'Resume a different session' },

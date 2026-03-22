@@ -66,6 +66,7 @@ import { CustomMessageComponent } from './components/custom-message.js';
 import { DynamicBorder } from './components/dynamic-border.js';
 import { FooterComponent } from './components/footer.js';
 import { keyHint, keyText, rawKeyHint } from './components/keybinding-hints.js';
+import { LoginDialogComponent } from './components/login-dialog.js';
 import { ModelSelectorComponent } from './components/model-selector.js';
 import { SessionSelectorComponent } from './components/session-selector.js';
 import { SettingsSelectorComponent } from './components/settings-selector.js';
@@ -383,7 +384,7 @@ export class InteractiveMode {
     }
 
     if (!this.session.model) {
-      this.showError('No model configured. Please set up API credentials.');
+      this.showLoginDialog('perplexity');
     } else if (modelFallbackMessage) {
       this.showWarning(modelFallbackMessage);
     }
@@ -1444,6 +1445,13 @@ export class InteractiveMode {
         this.editor.setText('');
         return;
       }
+      if (text === '/logout') {
+        this.session.modelRegistry.authStorage.logout('perplexity');
+        this.session.modelRegistry.refresh();
+        this.showStatus('Logged out. Perplexity credentials removed.');
+        this.editor.setText('');
+        return;
+      }
       if (text === '/new') {
         this.editor.setText('');
         await this.handleClearCommand();
@@ -2434,6 +2442,42 @@ export class InteractiveMode {
     this.editorContainer.addChild(component);
     this.ui.setFocus(focus);
     this.ui.requestRender();
+  }
+
+  private showLoginDialog(providerId: string): void {
+    const restoreEditor = (success: boolean, message?: string) => {
+      this.editorContainer.clear();
+      this.editorContainer.addChild(this.editor);
+      this.ui.setFocus(this.editor);
+      if (success) {
+        this.session.modelRegistry.refresh();
+        this.updateAvailableProviderCount();
+        this.showStatus(message ?? 'Logged in to Perplexity.');
+      } else {
+        this.showStatus(message ?? 'Login cancelled.');
+      }
+    };
+
+    const dialog = new LoginDialogComponent(this.ui, providerId, restoreEditor);
+
+    this.editorContainer.clear();
+    this.editorContainer.addChild(dialog);
+    this.ui.setFocus(dialog);
+    this.ui.requestRender();
+
+    this.session.modelRegistry.authStorage
+      .login(providerId, {
+        onAuth: info => dialog.showAuth(info.url, info.instructions),
+        onPrompt: prompt => dialog.showPrompt(prompt.message, prompt.placeholder),
+        onProgress: msg => dialog.showProgress(msg),
+        signal: dialog.signal,
+      })
+      .then(() => {
+        restoreEditor(true, "API key saved. You're logged in to Perplexity.");
+      })
+      .catch(() => {
+        // cancelled or failed — already handled by LoginDialogComponent.cancel()
+      });
   }
 
   private showSettingsSelector(): void {
