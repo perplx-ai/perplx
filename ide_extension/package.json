@@ -1,0 +1,175 @@
+{
+  "name": "perplx-code",
+  "displayName": "Perplx Code",
+  "description": "AI coding agent powered by the Perplexity Agent API — chat, edit, and run tools directly in your editor.",
+  "version": "0.0.1",
+  "publisher": "perplx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/perplx-ai/perplx.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Chat",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ai",
+    "perplexity",
+    "agent",
+    "coding",
+    "assistant",
+    "chat"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:perplx.chatView"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "perplx.openChat",
+        "title": "Perplx: Open Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "perplx.newSession",
+        "title": "Perplx: New Session",
+        "icon": "$(add)"
+      },
+      {
+        "command": "perplx.abortRequest",
+        "title": "Perplx: Abort Current Request",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "perplx.selectModel",
+        "title": "Perplx: Select Model"
+      },
+      {
+        "command": "perplx.cycleModel",
+        "title": "Perplx: Cycle Model"
+      },
+      {
+        "command": "perplx.setApiKey",
+        "title": "Perplx: Set API Key"
+      },
+      {
+        "command": "perplx.resumeSession",
+        "title": "Perplx: Resume Session"
+      },
+      {
+        "command": "perplx.compactSession",
+        "title": "Perplx: Compact Session"
+      },
+      {
+        "command": "perplx.openSettings",
+        "title": "Perplx: Open Settings"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "perplx-sidebar",
+          "title": "Perplx",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "perplx-sidebar": [
+        {
+          "type": "webview",
+          "id": "perplx.chatView",
+          "name": "Chat"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "perplx.newSession",
+          "when": "view == perplx.chatView",
+          "group": "navigation"
+        },
+        {
+          "command": "perplx.abortRequest",
+          "when": "view == perplx.chatView",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Perplx",
+      "properties": {
+        "perplx.defaultModel": {
+          "type": "string",
+          "default": "",
+          "description": "Default model to use (e.g. 'claude-sonnet-4-20250514'). Leave empty to auto-detect."
+        },
+        "perplx.defaultProvider": {
+          "type": "string",
+          "default": "",
+          "description": "Default provider (e.g. 'anthropic'). Leave empty to auto-detect."
+        },
+        "perplx.thinkingLevel": {
+          "type": "string",
+          "default": "medium",
+          "enum": [
+            "off",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "description": "Default thinking level for reasoning models."
+        },
+        "perplx.autoCompaction": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic context compaction when context window is filling up."
+        },
+        "perplx.autoRetry": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic retry on transient API errors."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "perplx.openChat",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p",
+        "when": "false"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && node esbuild.js",
+    "check-types": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.webview.json",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && node esbuild.js --production",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "marked": "^15.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@types/vscode-webview": "^1.57.0",
+    "esbuild": "^0.27.4",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.3"
+  }
+}
